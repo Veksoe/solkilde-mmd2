@@ -1,0 +1,118 @@
+/* --- IMPORTS --- */
+
+
+
+/* --- VARIABLES --- */
+:root {
+
+    /* COLORS */
+    --primaryColor: gray;
+    --secondaryColor: lightGray;
+    --accentColor: lightSlateGray;
+    --interactableColor: darkSlateGrey;
+    --hoverButtonColor: dimGray;
+    --disableButtonColor: silver;
+    --backgroundColor: whiteSmoke;
+    --baseTextDarkColor: black;
+
+
+
+    /* TEXT  */
+    --titleSizeMobile: 2.5rem;
+    --baseTextSizeMobile: .9rem;
+
+    /* SPACING */
+    --smallSpacing: 10px;
+    --standardSpacing: 16px;
+    --mediumSpacing: 24px;
+    --largeSpacing: 35px;
+    --xLargeSpacing: 50px;
+
+    /* DETAILS */
+    --borderRadius: 3px;
+    --round: 50%;
+    --shadow: 3px 3px 8px gray;
+}
+
+/* --- UTILLITIES --- */
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+.fullWidth {
+    grid-column: 1/-1;
+}
+
+/* --- GENERALS --- */
+
+body {
+    margin: 0;
+}
+
+main {
+    display: grid;
+    grid-template-columns: var(--standardSpacing) repeat(4, 1fr) var(--standardSpacing);
+}
+
+section {
+    grid-column: 2/-2;
+}
+
+article {}
+
+a {}
+
+i {}
+
+/* --- TEXT --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    grid-column: 2 / -2;
+}
+
+h1 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    margin: var(--mediumSpacing) 0;
+    text-align: center;
+    color: var(--primaryColor);
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: var(--accentColor);
+    font-style: italic;
+    margin: 0px;
+    color: var(--primaryColor);
+}
+
+h3 {
+    font-size: 1rem;
+    margin: 0px;
+    color: var(--secondaryColor);
+}
+
+p {
+    margin: 0 0 var(--smallSpacing) 0;
+    color: var(--baseTextDarkColor);
+}
+
+/* --- BUTTONS --- */
+a .btn {
+    background: var(--interactableColor);
+    padding: var(--standardSpacing) var(--mediumSpacing);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a .btn:hover {
+    background: var(--hoverButtonColor);
+    transform: scale(1.1);
+}

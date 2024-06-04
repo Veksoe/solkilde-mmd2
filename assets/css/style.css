@@ -1,35 +1,36 @@
 /* --- IMPORTS --- */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yeseva+One&display=swap');
 
 
 /* --- VARIABLES --- */
 :root {
 
     /* COLORS */
-    --primaryColor: gray;
-    --secondaryColor: lightGray;
-    --accentColor: lightSlateGray;
-    --interactableColor: darkSlateGrey;
-    --hoverButtonColor: dimGray;
-    --disableButtonColor: silver;
+    --primaryColor: #FDF7E3;
+    --secondaryColor: #B7D9E8;
+    --accentColor: #8AC6D0;
+    --interactableColor: #6F99AC;
+    --hoverButtonColor: #638a9c;
     --backgroundColor: whiteSmoke;
-    --baseTextDarkColor: black;
+    --baseTextDarkColor: #222;
+    --baseTextLightColor: #FFFF;
 
 
 
     /* TEXT  */
     --titleSizeMobile: 2.5rem;
-    --baseTextSizeMobile: .9rem;
+    --baseTextSizeMobile: 1rem;
 
     /* SPACING */
     --smallSpacing: 10px;
     --standardSpacing: 16px;
-    --mediumSpacing: 24px;
-    --largeSpacing: 35px;
-    --xLargeSpacing: 50px;
+    --mediumSpacing: 35px;
+    --largeSpacing: 50px;
+    --xLargeSpacing: 90px;
 
     /* DETAILS */
-    --borderRadius: 3px;
+    --borderRadius: 10px;
     --round: 50%;
     --shadow: 3px 3px 8px gray;
 }
@@ -45,6 +46,22 @@
     grid-column: 1/-1;
 }
 
+.backgroundSecondary {
+    background: var(--secondaryColor);
+    padding: 0 var(--mediumSpacing);
+}
+
+.backgroundAccent {
+    background: var(--accentColor);
+    padding: 0 var(--mediumSpacing);
+}
+
+.backgroundInteract {
+    background: var(--interactableColor);
+    padding: 0 var(--mediumSpacing);
+    color: var(--baseTextLightColor);
+}
+
 /* --- GENERALS --- */
 
 body {
@@ -53,16 +70,33 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: var(--standardSpacing) repeat(4, 1fr) var(--standardSpacing);
+    grid-template-columns: var(--mediumSpacing) repeat(4, 1fr) var(--mediumSpacing);
+}
+
+footer {
+    background: var(--primaryColor);
 }
 
 section {
     grid-column: 2/-2;
+    min-height: 50vh;
 }
 
 article {}
 
-a {}
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+a {
+    font-family: "Poppins", sans-serif;
+
+}
+
+
 
 i {}
 
@@ -75,44 +109,164 @@ h5,
 h6,
 p {
     grid-column: 2 / -2;
+    color: var(--baseTextDarkColor);
+    line-height: 1.7;
 }
 
-h1 {
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    margin: var(--mediumSpacing) 0;
+h1,
+h2.index {
+    font-size: 1.9rem;
+    margin: var(--largeSpacing) 0 var(--standardSpacing) 0px;
     text-align: center;
-    color: var(--primaryColor);
+    font-weight: 400;
+    font-family: "Yeseva One", serif;
 }
 
 h2 {
     font-size: 1.5rem;
-    color: var(--accentColor);
-    font-style: italic;
-    margin: 0px;
-    color: var(--primaryColor);
+    margin: var(--largeSpacing) 0 var(--standardSpacing) 0px;
+    font-weight: 400;
+    font-family: "Yeseva One", serif;
 }
 
+
 h3 {
-    font-size: 1rem;
-    margin: 0px;
-    color: var(--secondaryColor);
+    font-size: 1.2rem;
+    margin: var(--smallSpacing);
+    text-align: center;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+
 }
 
 p {
     margin: 0 0 var(--smallSpacing) 0;
     color: var(--baseTextDarkColor);
+    font-family: "Poppins", sans-serif;
+    font-size: var(--baseTextSizeMobile);
 }
 
 /* --- BUTTONS --- */
-a .btn {
+button {
+    background: none;
+    border: none;
+}
+
+a.btn {
     background: var(--interactableColor);
-    padding: var(--standardSpacing) var(--mediumSpacing);
+    padding: var(--smallSpacing) var(--standardSpacing);
     text-decoration: none;
+    font-weight: 700;
+    color: var(--baseTextLightColor);
+    border-radius: var(--borderRadius);
+    letter-spacing: .7px;
+    margin: var(--mediumSpacing);
+    display: block;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+a.btn:hover,
+button:hover {
+    background: var(--hoverButtonColor);
+    transform: scale(1.05);
+    transition: .3s ease-in-out;
+}
+
+
+
+/* --- NAVIGATION OG INDEX HEADER--- */
+header.index {
+    background-image: url("../img/index-hero.jpg");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+header h1 {
+    font-size: 4.6rem;
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 190px 0 0 0;
+}
+
+header h2 {
+    font-size: 1.6rem;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+
+}
+
+header .scroll {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 260px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 700;
+}
+
+header .scroll p {
+    font-size: .9rem;
+    margin: 0;
+}
+
+.scrollBtn {
+    font-size: 2.8rem;
+    color: white;
+    background: var(--interactableColor);
+    border-radius: var(--round);
+    width: 60px;
+    height: 60px;
+}
+
+nav {
+    padding: var(--mediumSpacing);
+    display: flex;
+    justify-content: space-between;
+}
+
+nav p {
+    font-size: 1.7rem;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
-a .btn:hover {
-    background: var(--hoverButtonColor);
-    transform: scale(1.1);
+nav button {
+    font-size: 2.5rem;
+}
+
+/* --- CONTAINERS --- */
+
+.produktContainer.index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--standardSpacing);
+
+}
+
+/* --- PRODUKT CARD --- */
+
+.produktPreview {
+    width: 47%;
+    margin-bottom: var(--mediumSpacing);
+}
+
+.produktPreview a {
+    text-decoration: none;
+}
+
+.produktPreview img {
+    border-radius: var(--borderRadius);
+    height: 150px;
+}
+
+.produktPreview h3 {
+    text-align: center;
+    margin: 0;
+    font-weight: 400;
 }

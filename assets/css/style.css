@@ -8,7 +8,7 @@
 
     /* COLORS */
     --primaryColor: #FDF7E3;
-    --secondaryColor: #B7D9E8;
+    --secondaryColor: #DBECF3;
     --accentColor: #8AC6D0;
     --interactableColor: #6F99AC;
     --hoverButtonColor: #638a9c;
@@ -51,15 +51,18 @@
     padding: 0 var(--mediumSpacing);
 }
 
-.backgroundAccent {
-    background: var(--accentColor);
-    padding: 0 var(--mediumSpacing);
+.blur {
+    background: rgba(255, 255, 255, 0.5);
+    padding: var(--largeSpacing);
+    height: 100%;
+    backdrop-filter: blur(15px);
+
 }
 
-.backgroundInteract {
-    background: var(--interactableColor);
-    padding: 0 var(--mediumSpacing);
-    color: var(--baseTextLightColor);
+.logo {
+    font-size: 1.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 /* --- GENERALS --- */
@@ -73,13 +76,11 @@ main {
     grid-template-columns: var(--mediumSpacing) repeat(4, 1fr) var(--mediumSpacing);
 }
 
-footer {
-    background: var(--primaryColor);
-}
+
 
 section {
     grid-column: 2/-2;
-    min-height: 50vh;
+    min-height: 40vh;
 }
 
 article {}
@@ -93,12 +94,17 @@ img {
 
 a {
     font-family: "Poppins", sans-serif;
+    color: var(--baseTextDarkColor);
 
 }
 
 
-
 i {}
+
+address {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+}
 
 /* --- TEXT --- */
 h1,
@@ -145,6 +151,9 @@ p {
     font-family: "Poppins", sans-serif;
     font-size: var(--baseTextSizeMobile);
 }
+
+
+
 
 /* --- BUTTONS --- */
 button {
@@ -230,14 +239,36 @@ nav {
     justify-content: space-between;
 }
 
-nav p {
-    font-size: 1.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
 
 nav button {
     font-size: 2.5rem;
+}
+
+
+/* --- FOOTER --- */
+footer {
+    background: var(--primaryColor);
+    padding: var(--mediumSpacing);
+
+}
+
+footer p,
+footer h2 {
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer div {
+    display: flex;
+    gap: var(--smallSpacing);
+    margin: var(--smallSpacing) 0;
+}
+
+footer i {
+    font-size: 2rem;
 }
 
 /* --- CONTAINERS --- */
@@ -246,8 +277,66 @@ nav button {
     display: flex;
     flex-wrap: wrap;
     gap: var(--standardSpacing);
+}
+
+
+
+/* --- BENTOBOX --- */
+
+.backgroundAccent {
+    background: var(--accentColor);
+    padding: var(--mediumSpacing);
+    font-weight: 700;
+    margin: var(--mediumSpacing) 0;
+    text-align: center;
+}
+
+.backgroundAccent p {
+    font-size: 1.1rem;
+}
+
+
+.bento .imgContainer {
+    height: 250px;
+}
+
+.bento .imgContainer img {
+    object-position: bottom;
+}
+
+.backgroundInteract {
+    background: var(--interactableColor);
+    padding: var(--mediumSpacing);
+    font-weight: 700;
+    margin-top: var(--mediumSpacing);
+    text-align: center;
 
 }
+
+.backgroundInteract p {
+    font-size: 1.1rem;
+    color: var(--baseTextLightColor);
+
+}
+
+
+/* --- HER ER VI --- */
+.herErVi h2 {
+    margin: 0;
+}
+
+.herErVi p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.herErVi {
+    background-image: url("../img/SolkildeEntry.jpg");
+    background-size: cover;
+    margin: var(--mediumSpacing) 0;
+    text-align: center;
+}
+
 
 /* --- PRODUKT CARD --- */
 

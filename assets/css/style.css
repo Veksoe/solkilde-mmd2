@@ -372,7 +372,7 @@ footer .copyright p {
 }
 
 .herErVi {
-    background-image: url("../img/SolkildeEntry.jpg");
+    background-image: url("../img/solkildeEntry.jpg");
     background-size: cover;
     margin: var(--mediumSpacing) 0;
     text-align: center;
@@ -400,6 +400,48 @@ footer .copyright p {
 
 .fremstilling h2 {
     text-align: center;
+}
+
+
+/* --- BEHANDLING OG PLEJE --- */
+
+.behandlingOgPleje>div {
+    margin-bottom: var(--mediumSpacing);
+}
+
+.behandlingOgPleje h3 {
+    margin: 0;
+}
+
+.behandlingOgPleje img {
+    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+    object-fit: cover;
+    object-position: center;
+}
+
+.behandlingOgPleje .imgContainer {
+    height: 200px;
+}
+
+/* --- HANDEL PÅ SIDEN --- */
+.handel .imgContainer {
+    width: 100%;
+    height: 300px;
+}
+
+.handel {
+    padding: 0;
+    margin-bottom: var(--mediumSpacing);
+}
+
+.handel h2 {
+
+    margin: var(--mediumSpacing) var(--mediumSpacing) 0 var(--mediumSpacing);
+}
+
+.handel p {
+    margin: var(--smallSpacing) var(--mediumSpacing);
+
 }
 
 /* --- PRODUKT CARD --- */

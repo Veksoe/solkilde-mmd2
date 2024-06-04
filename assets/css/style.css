@@ -42,7 +42,7 @@
     box-sizing: border-box;
 }
 
-.fullWidth {
+.fullWidthMobil {
     grid-column: 1/-1;
 }
 
@@ -122,10 +122,15 @@ p {
 h1,
 h2.index {
     font-size: 1.9rem;
-    margin: var(--largeSpacing) 0 var(--standardSpacing) 0px;
+    margin: var(--smallSpacing) 0 var(--standardSpacing) 0px;
     text-align: center;
     font-weight: 400;
     font-family: "Yeseva One", serif;
+}
+
+h2.index {
+    margin: var(--largeSpacing) 0 var(--standardSpacing) 0px;
+
 }
 
 h2 {
@@ -161,7 +166,9 @@ button {
     border: none;
 }
 
-a.btn {
+a.btn,
+.filterMobilContainer button,
+.produkter button {
     background: var(--interactableColor);
     padding: var(--smallSpacing) var(--standardSpacing);
     text-decoration: none;
@@ -182,6 +189,18 @@ button:hover {
     transition: .3s ease-in-out;
 }
 
+.filterMobilContainer button,
+.produkter button {
+    margin: var(--largeSpacing) 0;
+    display: flex;
+    gap: var(--smallSpacing);
+    align-items: center;
+    font-size: 1rem;
+}
+
+.filterMobilContainer button i {
+    font-size: 1.2rem;
+}
 
 
 /* --- NAVIGATION OG INDEX HEADER--- */
@@ -234,7 +253,7 @@ header .scroll p {
 }
 
 nav {
-    padding: var(--mediumSpacing);
+    padding: var(--mediumSpacing) var(--mediumSpacing) var(--smallSpacing) var(--mediumSpacing);
     display: flex;
     justify-content: space-between;
 }
@@ -271,12 +290,34 @@ footer i {
     font-size: 2rem;
 }
 
+footer .copyright {
+    justify-content: center;
+    align-items: baseline;
+    gap: 2px;
+}
+
+footer .copyright i,
+footer .copyright p {
+    font-size: 1rem;
+    color: rgba(34, 34, 34, 0.50);
+}
+
 /* --- CONTAINERS --- */
 
-.produktContainer.index {
+.produktContainer.index,
+.produktContainer.mobler {
     display: flex;
     flex-wrap: wrap;
     gap: var(--standardSpacing);
+}
+
+.filterMobilContainer {
+    min-height: unset;
+
+}
+
+.omSolkildeContainer {
+    padding: 0 var(--mediumSpacing);
 }
 
 
@@ -337,6 +378,29 @@ footer i {
     text-align: center;
 }
 
+/* --- FREMSTILLING--- */
+.fremstilling {
+    margin: var(--mediumSpacing) 0;
+
+    position: relative;
+
+}
+
+.fremstilling video {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.fremstilling .blur {
+    height: 100%;
+}
+
+.fremstilling h2 {
+    text-align: center;
+}
 
 /* --- PRODUKT CARD --- */
 

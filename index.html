@@ -19,7 +19,25 @@
 
 <body>
     <header class="fullWidthMobil index">
-        <nav></nav>
+        <nav>
+            <a href="./index.html" class="logo">Solkilde</a>
+            <button aria-label="menu" class="menu"><i class="fa-solid fa-bars"></i></button>
+            <!--https://fontawesome.com/icons/bars?f=classic&s=solid-->
+            <div class="mobilMenu hidden">
+                <button aria-label="close menu"><i class="fa-solid fa-xmark"></i>
+                </button><!--https://fontawesome.com/icons/xmark?f=classic&s=solid-->
+                <p class="logo">Solkilde</p>
+                <ul>
+                    <li><a class="active" href="./index.html">Forside</a></li>
+                    <li><a href="./mobler.html">Møbler</a></li>
+                    <li><a href="./boligdekoration.html">Boligdekoration</a></li>
+                    <li><a href="./inspiration.html">Inspiration fra butikken</a></li>
+                    <li><a href="./om-os.html">Om os</a></li>
+                </ul>
+            </div>
+
+        </nav>
+
         <h1>Solkilde</h1>
         <h2>Unikke møbler til dit hjem </h2>
         <div class="scroll">
@@ -32,7 +50,7 @@
     <main>
         <section>
             <h2 class="index">Vores favoritter</h2>
-            <div class="index produktContainer">
+            <div class="favoritter produktContainer">
             </div>
         </section>
         <section class="hvemErViSect fullWidthMobil index backgroundSecondary">
@@ -63,7 +81,8 @@
                 <h2 class="index">Vi er her!</h2>
                 <p>Du finder os inden is-hytterne, er du nået stranden er du gået for langt.</p>
                 <a class="btn"
-                    href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x4648caab7d698fb9:0x775191254d55f188?sa=X&ved=1t:8290&ictx=111">Du
+                    href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x4648caab7d698fb9:0x775191254d55f188?sa=X&ved=1t:8290&ictx=111"
+                    target="_blank">Du
                     finder os her</a>
             </div>
 

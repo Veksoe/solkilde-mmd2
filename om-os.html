@@ -19,7 +19,23 @@
 
 <body>
     <header>
-        <nav></nav>
+        <nav>
+            <a href="./index.html" class="logo">Solkilde</a>
+            <button aria-label="menu" class="menu"><i class="fa-solid fa-bars"></i></button>
+            <!--https://fontawesome.com/icons/bars?f=classic&s=solid-->
+            <div class="mobilMenu hidden">
+                <button aria-label="close menu"><i class="fa-solid fa-xmark"></i>
+                </button><!--https://fontawesome.com/icons/xmark?f=classic&s=solid-->
+                <p class="logo">Solkilde</p>
+                <ul>
+                    <li><a href="./index.html">Forside</a></li>
+                    <li><a href="./mobler.html">Møbler</a></li>
+                    <li><a href="./boligdekoration.html">Boligdekoration</a></li>
+                    <li><a href="./inspiration.html">Inspiration fra butikken</a></li>
+                    <li><a class="active" href="./om-os.html">Om os</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -43,7 +59,7 @@
 
             </div>
         </section>
-        <section class="fremstilling fullWidthMobil">
+        <section id="fremstilling" class="fremstilling fullWidthMobil">
             <video autoplay muted id="fremstilling">
                 <source src="./assets/video/fremstilling.mp4" type="video/mp4">
             </video>
@@ -58,7 +74,7 @@
                     Ved at vælge plantageteaktræ støtter man en mere bæredygtig fremtid. </p>
             </div>
         </section>
-        <section class="behandlingOgPleje">
+        <section id="behandlingOgPleje" class="behandlingOgPleje">
             <h2>Behandling og pleje</h2>
             <p>Teakmøbler har en rigtig god kvalitet og holdbarhed, og kræver dermed også minimal vedligeholdelse. Man
                 kan alligevel med lidt ekstra omsorg, bevare møblets udsende endnu længere. </p>

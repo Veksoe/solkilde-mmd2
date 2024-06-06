@@ -63,7 +63,21 @@
     font-size: 1.7rem;
     font-weight: 800;
     text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    display: block;
 }
+
+.active:after {
+    content: "";
+    width: 50%;
+    height: 5px;
+    background: var(--interactableColor);
+    position: absolute;
+    bottom: 10px;
+}
+
+
 
 /* --- GENERALS --- */
 
@@ -80,7 +94,7 @@ main {
 
 section {
     grid-column: 2/-2;
-    min-height: 40vh;
+    margin: var(--smallSpacing) 0;
 }
 
 article {}
@@ -92,7 +106,8 @@ img {
     object-position: center;
 }
 
-a {
+a,
+li {
     font-family: "Poppins", sans-serif;
     color: var(--baseTextDarkColor);
 
@@ -122,7 +137,7 @@ p {
 h1,
 h2.index {
     font-size: 1.9rem;
-    margin: var(--smallSpacing) 0 var(--standardSpacing) 0px;
+    margin: var(--standardSpacing) 0;
     text-align: center;
     font-weight: 400;
     font-family: "Yeseva One", serif;
@@ -135,9 +150,10 @@ h2.index {
 
 h2 {
     font-size: 1.5rem;
-    margin: var(--largeSpacing) 0 var(--standardSpacing) 0px;
+    margin: var(--mediumSpacing) 0 var(--standardSpacing) 0px;
     font-weight: 400;
     font-family: "Yeseva One", serif;
+    text-align: center;
 }
 
 
@@ -222,7 +238,6 @@ header h1 {
 header h2 {
     font-size: 1.6rem;
     font-family: "Poppins", sans-serif;
-    text-align: center;
     margin: 0;
     font-weight: 500;
 
@@ -253,7 +268,7 @@ header .scroll p {
 }
 
 nav {
-    padding: var(--mediumSpacing) var(--mediumSpacing) var(--smallSpacing) var(--mediumSpacing);
+    /* padding: var(--mediumSpacing) var(--mediumSpacing) var(--smallSpacing) var(--mediumSpacing); */
     display: flex;
     justify-content: space-between;
 }
@@ -261,6 +276,54 @@ nav {
 
 nav button {
     font-size: 2.5rem;
+}
+
+nav .logo,
+nav .menu {
+    padding: var(--mediumSpacing) var(--mediumSpacing) var(--smallSpacing) var(--mediumSpacing);
+}
+
+.mobilMenu {
+    background: var(--accentColor);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    padding: var(--smallSpacing);
+    display: flex;
+    flex-direction: column;
+}
+
+nav .mobilMenu button {
+    width: 50px;
+    font-size: 3.5rem;
+    position: absolute;
+    right: 10px;
+}
+
+nav .mobilMenu .logo {
+    text-align: center;
+    font-size: 2.7rem;
+    margin: var(--largeSpacing);
+}
+
+nav .mobilMenu ul {
+    padding: 0;
+}
+
+nav .mobilMenu li {
+    list-style: none;
+}
+
+nav .mobilMenu a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 
@@ -271,8 +334,7 @@ footer {
 
 }
 
-footer p,
-footer h2 {
+footer p {
     text-align: center;
 }
 
@@ -304,8 +366,9 @@ footer .copyright p {
 
 /* --- CONTAINERS --- */
 
-.produktContainer.index,
-.produktContainer.mobler {
+.produktContainer.favoritter,
+.produktContainer.mobler,
+.produktContainer.relateredeProdukter {
     display: flex;
     flex-wrap: wrap;
     gap: var(--standardSpacing);
@@ -398,10 +461,6 @@ footer .copyright p {
     height: 100%;
 }
 
-.fremstilling h2 {
-    text-align: center;
-}
-
 
 /* --- BEHANDLING OG PLEJE --- */
 
@@ -444,6 +503,20 @@ footer .copyright p {
 
 }
 
+/* --- OPSTILING --- */
+
+.opstilling {
+    background: var(--secondaryColor);
+}
+
+.opstilling .imgContainer {
+    height: 250px;
+}
+
+.opstilling .text {
+    padding: var(--smallSpacing) var(--mediumSpacing);
+}
+
 /* --- PRODUKT CARD --- */
 
 .produktPreview {
@@ -464,4 +537,135 @@ footer .copyright p {
     text-align: center;
     margin: 0;
     font-weight: 400;
+}
+
+/* --- PRODUKT SIDE  --- */
+
+.produktsideContainerMobil .imgContainer {
+    height: 350px;
+}
+
+.produktsideContainerMobil .produktInfo {
+    padding: 0 var(--mediumSpacing);
+}
+
+.produktsideContainerMobil h1 {
+    text-align: left;
+    margin: 0;
+}
+
+
+.produktsideContainerMobil .pris {
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.produktsideContainerMobil .size p {
+    margin: 0;
+    font-weight: 700;
+}
+
+.produktsideContainerMobil .teak {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin: var(--standardSpacing) var(--standardSpacing);
+}
+
+.produktsideContainerMobil .teak .imgContainer {
+    height: 50px;
+    width: 50px;
+}
+
+
+.faqBox {
+    border: 2px solid var(--accentColor);
+    border-radius: var(--borderRadius);
+    padding: var(--smallSpacing);
+    margin: var(--smallSpacing) 0;
+}
+
+.faqBox .icon {
+    color: var(--accentColor);
+    font-size: 2.5rem;
+}
+
+.faqBox h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--smallSpacing);
+    line-height: 1.3;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.faqBox p {
+    margin: 0 var(--mediumSpacing);
+}
+
+/* --- KONTAKT  --- */
+.contact {
+    background: var(--secondaryColor);
+    padding: 0 var(--mediumSpacing);
+}
+
+.contact input,
+.contact textarea {
+    border: 1px solid var(--accentColor);
+    border-radius: var(--borderRadius);
+    width: 100%;
+    padding: 15px var(--standardSpacing);
+    font-family: "Poppins", sans-serif;
+
+}
+
+
+.contact textarea {
+    height: 150px;
+}
+
+.contact label {
+    position: absolute;
+    margin-left: 20px;
+    color: grey;
+    transition: all .4s;
+    top: 25px;
+    transform: translateY(-50%);
+    cursor: text;
+    display: block;
+    font-family: "Poppins", sans-serif;
+
+}
+
+.contact .formGroup {
+    position: relative;
+    margin-top: 25px;
+}
+
+.contact .move-up {
+    margin-top: -25px;
+    margin-left: 5px;
+    font-size: 14px;
+    background: var(--interactableColor);
+    color: white;
+    padding: 4px 8px;
+    border-radius: var(--borderRadius);
+    min-width: 50px;
+}
+
+.contact #submitBtn {
+    background: var(--interactableColor);
+    color: white;
+    float: right;
+    border-radius: var(--borderRadius);
+    padding: var(--smallSpacing) var(--mediumSpacing);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: var(--smallSpacing) 0 var(--largeSpacing) 0;
+}
+
+/* --- TING DER SKAL VÆRE HER FORDI SPECIFICITY --- */
+
+.hidden {
+    display: none;
 }

@@ -59,10 +59,12 @@ openMenuBtnEl.addEventListener("click", event => {
     mobilMenuEl.classList.toggle("hidden")
 })
 
-seFlereBtn.addEventListener("click", event => {
-    hentProdukter(produktListeMoblerContainerEl, "34", 9, elements.length)
+if (seFlereBtn) {
+    seFlereBtn.addEventListener("click", event => {
+        hentProdukter(produktListeMoblerContainerEl, "34", 9, elements.length)
 
-})
+    })
+}
 
 for (let index = 0; index < inputEl.length; index++) {
     let currentLabel = inputEl[index].parentElement.firstElementChild;

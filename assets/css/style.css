@@ -199,7 +199,8 @@ a.btn,
 }
 
 a.btn:hover,
-button:hover {
+.produkter button:hover,
+.filterMobilContainer button:hover {
     background: var(--hoverButtonColor);
     transform: scale(1.05);
     transition: .3s ease-in-out;
@@ -225,6 +226,7 @@ header.index {
     height: 100vh;
     background-size: cover;
     background-position: center;
+    position: relative;
 }
 
 header h1 {
@@ -232,7 +234,8 @@ header h1 {
     font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     font-weight: 700;
-    margin: 190px 0 0 0;
+    /* margin-top: 350px; */
+    color: var(--baseTextLightColor);
 }
 
 header h2 {
@@ -240,22 +243,32 @@ header h2 {
     font-family: "Poppins", sans-serif;
     margin: 0;
     font-weight: 500;
+    color: var(--baseTextLightColor);
 
+}
+
+header .heroTextBox {
+    background: rgba(0, 0, 0, 0.4);
+    min-height: 200px;
+    position: relative;
+    bottom: -45%;
 }
 
 header .scroll {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 260px;
     display: flex;
     align-items: center;
     flex-direction: column;
     font-weight: 700;
+    position: relative;
+    bottom: -44%;
 }
 
 header .scroll p {
     font-size: .9rem;
     margin: 0;
+    color: var(--baseTextLightColor);
 }
 
 .scrollBtn {
@@ -283,14 +296,21 @@ nav .menu {
     padding: var(--mediumSpacing) var(--mediumSpacing) var(--smallSpacing) var(--mediumSpacing);
 }
 
+.index nav .logo,
+.index nav .menu {
+    color: var(--baseTextLightColor);
+
+}
+
 .mobilMenu {
-    background: var(--accentColor);
+    background: var(--secondaryColor);
     position: absolute;
     width: 100%;
     height: 100vh;
     padding: var(--smallSpacing);
     display: flex;
     flex-direction: column;
+    z-index: 100;
 }
 
 nav .mobilMenu button {
@@ -304,6 +324,7 @@ nav .mobilMenu .logo {
     text-align: center;
     font-size: 2.7rem;
     margin: var(--largeSpacing);
+    color: var(--baseTextDarkColor);
 }
 
 nav .mobilMenu ul {
@@ -368,7 +389,8 @@ footer .copyright p {
 
 .produktContainer.favoritter,
 .produktContainer.mobler,
-.produktContainer.relateredeProdukter {
+.produktContainer.relateredeProdukter,
+.produktContainer.boligdekoration {
     display: flex;
     flex-wrap: wrap;
     gap: var(--standardSpacing);

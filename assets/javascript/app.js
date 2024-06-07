@@ -26,7 +26,7 @@ const id = urlParams.get('id');
 KALD AF FUNKTIONERNE
 *************************************/
 if (produktListeFavContainerEl) {
-    hentProdukter(produktListeContainerEl, "34,37", 4)
+    hentProdukterFraTaxonomy("34,37", "", "", "35", "", "", "", "", 4, produktListeFavContainerEl)
 }
 if (produktListeMoblerContainerEl) {
     hentProdukter(produktListeMoblerContainerEl, "34", 9)
@@ -85,6 +85,7 @@ function hentProdukter(placering, kategori, antal) {
         .catch(err => console.log("Noget gik galt: " + err));
 
 }
+
 function hentProdukt(produktId, placering) {
     fetch(baseUrl + "/" + produktId) /* Fetch link med id fra den specefikke produkt vi ønsker at hente.  */
         .then(res => res.json())
@@ -92,6 +93,53 @@ function hentProdukt(produktId, placering) {
             renderFuldProdukt(data, placering) /* Kald funktionen der renderer en produkt med dataet der bliver fetchet og hvor den skal placeres på siden  */
         })
         .catch(err => console.log("Noget gik galt: " + err));
+}
+
+/* Hent produkter og fra bestemt taxonomi og taxonomierne, et antal der skal vises og en placering  */
+function hentProdukterFraTaxonomy(kategori, bredde, dybde, favoritter, fremstillingsmetode, hojde, pris, produkt_type, antal, placering) {
+    let filteretUrl = baseUrl + "?categories=" + kategori + "&per_page=" + antal; /* Variable til at holde url'et til filtreringen af produkter */
+    let query = ""; /* Variable til at holde det vi vil filtere ud fra */
+
+    if (bredde && bredde.length !== 0) { /* Tjekker om vi sætter noget i parameteret */
+        query += "&bredde=" + bredde /* Hvis der er sat noget, ligger vi det til vores query variable, sammen med teksten til den kategori */
+    }
+
+    if (dybde && dybde.length !== 0) {
+        query += "&dybde=" + dybde
+    }
+    if (favoritter && favoritter.length !== 0) {
+        query += "&favoritter=" + favoritter
+    }
+    if (fremstillingsmetode && fremstillingsmetode.length !== 0) {
+        query += "&fremstillingsmetode=" + fremstillingsmetode
+    }
+
+    if (hojde && hojde.length !== 0) {
+        query += "&hojde=" + hojde
+    }
+    if (pris && pris.length !== 0) {
+        query += "&pris=" + pris
+    }
+
+    if (produkt_type && produkt_type.length !== 0) {
+        query += "&produkt_type=" + produkt_type
+    }
+
+
+    fetch(filteretUrl + query) /* Hent datet fra linket der kommer når vi ligger vores query variable sammen med vores filteretUrl */
+        .then(res => res.json())
+        .then(data => {
+
+            if (data.length === 0) { /* Hvis der ikke er noget data  sæt teksten ind i placeringen sat i functions kaldet */
+                placering.innerHTML += `<p>Der er desværre ingen opskrifter der matcher dit valg</p>`
+            }
+            else {
+                data.forEach(produkt => renderPreviewProdukt(produkt, placering)) /* Hvis der er noget data kør kør funktionen til at rendere preview af en produkt/produkt card for hver data */
+            }
+
+        })
+        .catch(err => console.log("Noget gik galt: " + err));
+
 }
 
 /************************************
@@ -134,7 +182,7 @@ function renderFuldProdukt(produkt, placering) {
         behandlingsIndhold = "";
     }
 
-    placering.innerHTML += ` <div class="imgContainer"><img src="${produkt.acf.billeder.billede_1.sizes.medium}" alt="${produkt.acf.billeder.billede_1.alt}"></div>
+    placering.innerHTML += ` <div class="imgContainer"><img src="${produkt.acf.billeder.billede_1.sizes.medium_large}" alt="${produkt.acf.billeder.billede_1.alt}"></div>
     <div class="produktInfo">
 <h1>${produkt.title.rendered}</h1>
 <p class="pris">${produkt.acf.pris}</p>

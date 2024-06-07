@@ -13,6 +13,7 @@ const openMenuBtnEl = document.querySelector("nav .menu ")
 const mobilMenuEl = document.querySelector("nav .mobilMenu")
 const inputEl = document.querySelectorAll(".input");
 const filterBtnEl = document.querySelector(".filterBtn")
+const seFlereBtn = document.querySelector(".produkter button")
 const filterContainernEl = document.querySelector(".filterContainer")
 const toggleEls = document.querySelectorAll(".toggle")
 const footerEl = document.querySelector("footer")
@@ -22,6 +23,9 @@ const urlParams = new URLSearchParams(window.location.search);
 /* Variable der sætter et id, ud fra hvad der står efter "id" i url/search baren */
 const id = urlParams.get('id');
 
+//!!!
+let elements = []
+
 /************************************
 KALD AF FUNKTIONERNE
 *************************************/
@@ -29,10 +33,10 @@ if (produktListeFavContainerEl) {
     hentProdukterFraTaxonomy("34,37", "", "", "35", "", "", "", "", 4, produktListeFavContainerEl)
 }
 if (produktListeMoblerContainerEl) {
-    hentProdukter(produktListeMoblerContainerEl, "34", 9)
+    hentProdukter(produktListeMoblerContainerEl, "34", 9, elements.length)
 }
 if (produktListeBoligdekorationContainerEl) {
-    hentProdukter(produktListeBoligdekorationContainerEl, "37", 9)
+    hentProdukter(produktListeBoligdekorationContainerEl, "37", 9, elements.length)
 }
 if (produktSideMobilContainerEL) {
     hentProdukt(id, produktSideMobilContainerEL)
@@ -55,6 +59,11 @@ openMenuBtnEl.addEventListener("click", event => {
     mobilMenuEl.classList.toggle("hidden")
 })
 
+seFlereBtn.addEventListener("click", event => {
+    hentProdukter(produktListeMoblerContainerEl, "34", 9, elements.length)
+
+})
+
 for (let index = 0; index < inputEl.length; index++) {
     let currentLabel = inputEl[index].parentElement.firstElementChild;
     inputEl[index].addEventListener("focus", function () {
@@ -75,10 +84,12 @@ HENT PRODUKTER PÅ FORSKELLIGE MÅDER
 *************************************/
 
 /* Hent alle produkter og tag en placering ind */
-function hentProdukter(placering, kategori, antal) {
-    fetch(baseUrl + "?categories=" + kategori + "&per_page=" + antal)
+function hentProdukter(placering, kategori, antal, offset) {
+    fetch(baseUrl + "?categories=" + kategori + "&per_page=" + antal + "&offset=" + offset)
         .then(res => res.json())
         .then(data => {
+            //!!!
+            elements = elements.concat(data)
             data.forEach(produkt => renderPreviewProdukt(produkt, placering)) /* For hvert object i datet, kør funktionen til at rendere preview af en produkt/produkt card. */
             console.log("her")
         })
@@ -141,6 +152,8 @@ function hentProdukterFraTaxonomy(kategori, bredde, dybde, favoritter, fremstill
         .catch(err => console.log("Noget gik galt: " + err));
 
 }
+
+
 
 /************************************
 DYNAMISK OPSÆTNING AF HTML

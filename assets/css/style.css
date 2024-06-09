@@ -107,7 +107,8 @@ img {
 }
 
 a,
-li {
+li,
+label {
     font-family: "Poppins", sans-serif;
     color: var(--baseTextDarkColor);
 
@@ -208,7 +209,7 @@ a.btn:hover,
 
 .filterMobilContainer button,
 .produkter button {
-    margin: var(--largeSpacing) 0;
+    margin: var(--smallSpacing) 0;
     display: flex;
     gap: var(--smallSpacing);
     align-items: center;
@@ -396,10 +397,6 @@ footer .copyright p {
     gap: var(--standardSpacing);
 }
 
-.filterMobilContainer {
-    min-height: unset;
-
-}
 
 .omSolkildeContainer {
     padding: 0 var(--mediumSpacing);
@@ -655,7 +652,6 @@ footer .copyright p {
     transform: translateY(-50%);
     cursor: text;
     display: block;
-    font-family: "Poppins", sans-serif;
 
 }
 
@@ -664,7 +660,7 @@ footer .copyright p {
     margin-top: 25px;
 }
 
-.contact .move-up {
+.contact .moveUp {
     margin-top: -25px;
     margin-left: 5px;
     font-size: 14px;
@@ -684,6 +680,66 @@ footer .copyright p {
     font-size: 1.3rem;
     font-weight: 700;
     margin: var(--smallSpacing) 0 var(--largeSpacing) 0;
+}
+
+/* --- FILTER --- */
+.filterMobilContainer {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    position: relative;
+    margin: 0 var(--mediumSpacing);
+}
+
+.filterMobilContainer .filterBox {
+    width: 100%;
+    padding: var(--mediumSpacing);
+    background: white;
+    position: absolute;
+
+    border: 2px solid var(--interactableColor);
+    border-radius: var(--borderRadius);
+}
+
+.filterMobilContainer button {
+    width: 110px;
+    justify-content: center;
+}
+
+.filterMobilContainer .filterGroup {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 3px solid var(--accentColor);
+}
+
+.filterMobilContainer .filterBox button {
+    background: none;
+    box-shadow: none;
+    color: #222;
+    width: 50px;
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
+
+.filterMobilContainer .filterBox button i {
+    font-size: 2.5rem;
+
+}
+
+
+.filterGroup input {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--borderRadius);
+    border: 92px solid #222;
+}
+
+.filterBox label {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 /* --- TING DER SKAL VÆRE HER FORDI SPECIFICITY --- */

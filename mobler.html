@@ -50,9 +50,155 @@
                 andre varer vi har, som ikke er at finde på hjemmesiden. Er det uden for sæsonen, så kontakt os, og lad
                 os finde en dag du kan komme og besøge butikken. </p>
         </section>
-        <section class="filterMobilContainer">
-            <button>Filter <i class="fa-solid fa-sliders"></i></button>
+        <section class="filterMobilContainer fullWidthMobil ">
+            <button class="filterBtn">Filter <i class="fa-solid fa-sliders"></i></button>
             <!--https://fontawesome.com/icons/sliders?f=classic&s=solid-->
+            <div class="filterBox hidden">
+                <button aria-label="close menu"><i class="fa-solid fa-xmark"></i>
+                </button><!--https://fontawesome.com/icons/xmark?f=classic&s=solid-->
+                <div class="filterGroup">
+                    <h3>Bredde</h3>
+                    <label class="toggle">
+                        <input id="breddeUnder50Filter" type="checkbox" value="8">
+                        <span class="tag">Under 50 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="bredde50-100Filter" type="checkbox" value="9">
+                        <span class="tag">50-100 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="bredde101-150Filter" type="checkbox" value="10">
+                        <span class="tag">101-150 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="bredde151-200Filter" type="checkbox" value="11">
+                        <span class="tag">151-200 cm</span>
+                    </label>
+                    <label class="toggle">
+                        <input id="breddeOver200Filter" type="checkbox" value="12">
+                        <span class="tag">Over 200</span>
+                    </label>
+                </div>
+                <div class="filterGroup">
+                    <h3>Dybde</h3>
+                    <label class="toggle">
+                        <input id="dybdeUnder50Filter" type="checkbox" value="13">
+                        <span class="tag">Under 50 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="dybde50-100Filter" type="checkbox" value="14">
+                        <span class="tag">50-100 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="dybde101-150Filter" type="checkbox" value="15">
+                        <span class="tag">101-150 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="dybde151-200Filter" type="checkbox" value="16">
+                        <span class="tag">151-200 cm</span>
+                    </label>
+                    <label class="toggle">
+                        <input id="dybdeOver200Filter" type="checkbox" value="38">
+                        <span class="tag">Over 200</span>
+                    </label>
+                </div>
+                <div class="filterGroup">
+                    <h3>Højde</h3>
+                    <label class="toggle">
+                        <input id="hojdeUnder50Filter" type="checkbox" value="17">
+                        <span class="tag">Under 50 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="hojde50-100Filter" type="checkbox" value="18">
+                        <span class="tag">50-100 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="hojde101-150Filter" type="checkbox" value="19">
+                        <span class="tag">101-150 cm</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="hojde151-200Filter" type="checkbox" value="20">
+                        <span class="tag">151-200 cm</span>
+                    </label>
+                    <label class="toggle">
+                        <input id="hojdeOver200Filter" type="checkbox" value="21">
+                        <span class="tag">Over 200</span>
+                    </label>
+                </div>
+                <div class="filterGroup">
+                    <h3>Pris</h3>
+                    <label class="toggle">
+                        <input id="prisUnder500Filter" type="checkbox" value="28">
+                        <span class="tag">Under 500 kr</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="pris500-1000Filter" type="checkbox" value="29">
+                        <span class="tag">500-1000 kr</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="pris1001-2000Filter" type="checkbox" value="30">
+                        <span class="tag">1001-2000 kr</span>
+                    </label>
+                    <label class="toggle">
+                        <input id="pris2001-4000Filter" type="checkbox" value="31">
+                        <span class="tag">2001-4000 kr</span>
+                    </label>
+                    <label class="toggle">
+                        <input id="pris4001-6000Filter" type="checkbox" value="32">
+                        <span class="tag">4001-6000 kr</span>
+                    </label>
+                    <label class="toggle">
+                        <input id="prisOver600Filter" type="checkbox" value="39">
+                        <span class="tag">Over 6000 kr</span>
+                    </label>
+
+                </div>
+                <div class="filterGroup">
+                    <h3>Fremstillingsmetode</h3>
+                    <label class="toggle">
+                        <input id="handlavetFilter" type="checkbox" value="3">
+                        <span class="tag">Håndlavet</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="masseproduceretFilter" type="checkbox" value="2">
+                        <span class="tag">Masseproduceret</span>
+                    </label>
+
+                </div>
+                <div class="filterGroup">
+                    <h3>Type</h3>
+                    <label class="toggle">
+                        <input id="stolFilter" type="checkbox" value="4">
+                        <span class="tag">Stol</span>
+                    </label>
+
+                    <label class="toggle">
+                        <input id="benkFilter" type="checkbox" value="6">
+                        <span class="tag">Bænk</span>
+                    </label>
+                    <label class="toggle">
+                        <input id="bordFilter" type="checkbox" value="5">
+                        <span class="tag">Bord</span>
+                    </label>
+                    <label class="toggle">
+                        <input id="multiFilter" type="checkbox" value="7">
+                        <span class="tag">Multifunktionel</span>
+                    </label>
+                </div>
+
+            </div>
         </section>
         <section class="produkter">
 

@@ -9,8 +9,11 @@ const produktRelateredeContainerEl = document.querySelector(".produktContainer.r
 
 
 const closeMenuBtnEl = document.querySelector("nav .mobilMenu button")
+const closeFilterBtnEl = document.querySelector(".filterBox button")
 const openMenuBtnEl = document.querySelector("nav .menu ")
 const mobilMenuEl = document.querySelector("nav .mobilMenu")
+const filterBoxEl = document.querySelector(".filterBox")
+
 const inputEl = document.querySelectorAll(".input");
 const filterBtnEl = document.querySelector(".filterBtn")
 const seFlereBtn = document.querySelector(".produkter button")
@@ -42,12 +45,13 @@ if (produktSideMobilContainerEL) {
     hentProdukt(id, produktSideMobilContainerEL)
 }
 if (produktRelateredeContainerEl) {
-    hentProdukter(produktRelateredeContainerEl, "34,37", 4)
+    hentProdukter(produktRelateredeContainerEl, "34,37", 4, elements.length)
 }
 
 if (footerEl) {
     renderFooter();
 }
+
 
 /************************************
 EVENTHANDLER
@@ -58,6 +62,16 @@ closeMenuBtnEl.addEventListener("click", event => {
 openMenuBtnEl.addEventListener("click", event => {
     mobilMenuEl.classList.toggle("hidden")
 })
+if (filterBtnEl) {
+    filterBtnEl.addEventListener("click", event => {
+        filterBoxEl.classList.remove("hidden")
+    })
+}
+if (filterBtnEl) {
+    closeFilterBtnEl.addEventListener("click", event => {
+        filterBoxEl.classList.add("hidden")
+    })
+}
 
 if (seFlereBtn) {
     seFlereBtn.addEventListener("click", event => {
@@ -69,16 +83,22 @@ if (seFlereBtn) {
 for (let index = 0; index < inputEl.length; index++) {
     let currentLabel = inputEl[index].parentElement.firstElementChild;
     inputEl[index].addEventListener("focus", function () {
-        currentLabel.classList.add("move-up");
+        currentLabel.classList.add("moveUp");
     });
 
 }
 for (let index = 0; index < inputEl.length; index++) {
     let currentLabel = inputEl[index].parentElement.firstElementChild;
     inputEl[index].addEventListener("blur", function () {
-        currentLabel.classList.remove("move-up");
+        currentLabel.classList.remove("moveUp");
     });
 
+}
+if (toggleEls) {
+    toggleEls.forEach(toggle => {
+        toggle.addEventListener("change", () => filterProdukter(produktListeContainerEl))
+
+    })
 }
 
 /************************************
@@ -90,10 +110,12 @@ function hentProdukter(placering, kategori, antal, offset) {
     fetch(baseUrl + "?categories=" + kategori + "&per_page=" + antal + "&offset=" + offset)
         .then(res => res.json())
         .then(data => {
-            //!!!
+            // if (data !== antal) {
+            //     console.log("tesr")
+            //     seFlereBtn.classList.add("hidden")
+            // }
             elements = elements.concat(data)
             data.forEach(produkt => renderPreviewProdukt(produkt, placering)) /* For hvert object i datet, kør funktionen til at rendere preview af en produkt/produkt card. */
-            console.log("her")
         })
         .catch(err => console.log("Noget gik galt: " + err));
 
@@ -144,7 +166,7 @@ function hentProdukterFraTaxonomy(kategori, bredde, dybde, favoritter, fremstill
         .then(data => {
 
             if (data.length === 0) { /* Hvis der ikke er noget data  sæt teksten ind i placeringen sat i functions kaldet */
-                placering.innerHTML += `<p>Der er desværre ingen opskrifter der matcher dit valg</p>`
+                placering.innerHTML += `<p>Der er desværre ingen prdukter der matcher dit valg</p>`
             }
             else {
                 data.forEach(produkt => renderPreviewProdukt(produkt, placering)) /* Hvis der er noget data kør kør funktionen til at rendere preview af en produkt/produkt card for hver data */
@@ -153,6 +175,108 @@ function hentProdukterFraTaxonomy(kategori, bredde, dybde, favoritter, fremstill
         })
         .catch(err => console.log("Noget gik galt: " + err));
 
+}
+
+
+/* Filtrer produkt og tag en placering */
+function filterProdukter(placering) {
+    placering.innerHTML = ""; /* Fjern hvad der står i placeringen i øjeblikket */
+    let tilladtBredder = [] /* Variablen med tomt array til at holde taxonomier i den aktuelle kategori */
+    let tilladtDybder = []
+    let tilladtHøjder = []
+    let tilladtPriser = []
+    let tilladtFremstilling = []
+    let tilladtType = []
+
+
+    /* Hvis elementet i HTMLet med et bestemt id er checked */
+    if (document.querySelector("#breddeUnder50Filter").checked) {
+        /* Hvis den er checked, indsæt dens værdi i det aktuelle array */
+        tilladtBredder.push(document.querySelector("#breddeUnder50Filter").value);
+    }
+    if (document.querySelector("#bredde50-100Filter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde50-100Filter").value);
+    }
+    if (document.querySelector("#bredde101-150Filter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde101-150Filter").value);
+    }
+    if (document.querySelector("#bredde151-200Filter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde151-200Filter").value);
+    }
+    if (document.querySelector("#breddeOver200Filter").checked) {
+        tilladtBredder.push(document.querySelector("#breddeOver200Filter").value);
+    }
+    if (document.querySelector("#dybdeUnder50Filter").checked) {
+        tilladtDybder.push(document.querySelector("#dybdeUnder50Filter").value)
+    }
+    if (document.querySelector("#dybde50-100Filter").checked) {
+        tilladtDybder.push(document.querySelector("#dybde50-100Filter").value)
+    }
+    if (document.querySelector("#dybde101-150Filter").checked) {
+        tilladtDybder.push(document.querySelector("#dybde101-150Filter").value)
+    }
+    if (document.querySelector("#dybde151-200Filter").checked) {
+        tilladtDybder.push(document.querySelector("#dybde151-200Filter").value);
+    }
+    if (document.querySelector("#dybdeOver200Filter").checked) {
+        tilladtDybder.push(document.querySelector("#dybdeOver200Filter").value);
+        // }
+        // if (document.querySelector("#sommerFilter").checked) {
+        //     tilladtArstid.push(document.querySelector("#sommerFilter").value);
+        // }
+        // if (document.querySelector("#vinterFilter").checked) {
+        //     tilladtArstid.push(document.querySelector("#vinterFilter").value);
+        // }
+        // if (document.querySelector("#diabetesFilter").checked) {
+        //     tilladtDiet.push(document.querySelector("#diabetesFilter").value);
+        // }
+        // if (document.querySelector("#laktoseFilter").checked) {
+        //     tilladtDiet.push(document.querySelector("#laktoseFilter").value)
+        // }
+        // if (document.querySelector("#vegatarFilter").checked) {
+        //     tilladtDiet.push(document.querySelector("#vegatarFilter").value)
+        // }
+        // if (document.querySelector("#forretFilter").checked) {
+        //     tilladtMaltidstype.push(document.querySelector("#forretFilter").value)
+        // }
+        // if (document.querySelector("#hovedretFilter").checked) {
+        //     tilladtMaltidstype.push(document.querySelector("#hovedretFilter").value);
+        // }
+        // if (document.querySelector("#dessertFilter").checked) {
+        //     tilladtMaltidstype.push(document.querySelector("#dessertFilter").value);
+        // }
+        // if (document.querySelector("#varmtFilter").checked) {
+        //     tilladtTemperatur.push(document.querySelector("#varmtFilter").value);
+        // }
+        // if (document.querySelector("#koldFilter").checked) {
+        //     tilladtTemperatur.push(document.querySelector("#koldFilter").value);
+        // }
+        // if (document.querySelector("#lynhurtigtFilter").checked) {
+        //     tilladtTilberedningstid.push(document.querySelector("#lynhurtigtFilter").value);
+        // }
+        // if (document.querySelector("#hurtigFilter").checked) {
+        //     tilladtTilberedningstid.push(document.querySelector("#hurtigFilter").value)
+        // }
+        // if (document.querySelector("#mellemFilter").checked) {
+        //     tilladtTilberedningstid.push(document.querySelector("#mellemFilter").value)
+        // }
+        // if (document.querySelector("#langsomFilter").checked) {
+        //     tilladtTilberedningstid.push(document.querySelector("#langsomFilter").value);
+        // }
+        // if (document.querySelector("#asiasiskFilter").checked) {
+        //     tilladtVerdensmad.push(document.querySelector("#asiasiskFilter").value);
+        // }
+        // if (document.querySelector("#italienskFilter").checked) {
+        //     tilladtVerdensmad.push(document.querySelector("#italienskFilter").value);
+        // }
+        // if (document.querySelector("#mellemøstiskFilter").checked) {
+        //     tilladtVerdensmad.push(document.querySelector("#mellemøstiskFilter").value)
+        // }
+        // if (document.querySelector("#mexicanskFilter").checked) {
+        //     tilladtVerdensmad.push(document.querySelector("#mexicanskFilter").value)
+    }
+    /* Kør funktionen der henter opskrifter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
+    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHøjder, tilladtPriser, tilladtType, 100, placering)
 }
 
 
@@ -211,6 +335,7 @@ ${certificeringsIndhold}
 ${behandlingsIndhold}
 
 </div>`
+    opdaterTabTitle(produkt.title.rendered + " - Solkilde")
 }
 
 

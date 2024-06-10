@@ -353,7 +353,11 @@ footer a {
   text-decoration: none;
 }
 
-footer div {
+footer .kontakt {
+  display: flex;
+  flex-direction: column;
+}
+footer .kontakt div {
   display: flex;
   gap: var(--smallSpacing);
   margin: var(--smallSpacing) 0;
@@ -886,5 +890,10 @@ footer .copyright p {
   }
   footer {
     display: flex;
+    justify-content: space-between;
+  }
+  footer .logo {
+    margin-top: var(--largeSpacing);
+    font-size: 3rem;
   }
 }

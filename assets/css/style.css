@@ -763,6 +763,9 @@ footer .copyright p {
     padding: var(--smallSpacing) var(--xLargeSpacing);
     backdrop-filter: blur(25px);
   }
+  .fremstilling {
+    min-height: 600px;
+  }
   .behandlingOgPleje .behandlingContainer {
     flex-direction: row;
   }

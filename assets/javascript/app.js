@@ -15,7 +15,8 @@ const mobilMenuEl = document.querySelector("nav .mobilMenu")
 const filterBoxEl = document.querySelector(".filterBox")
 
 const inputEl = document.querySelectorAll(".input");
-const filterBtnEl = document.querySelector(".filterBtn")
+const filterMobelBtnEl = document.querySelector(".mobler .filterBtn")
+const filterDekorationBtnEl = document.querySelector(".dekorationer .filterBtn")
 const seFlereBtn = document.querySelector(".produkter button")
 const filterContainernEl = document.querySelector(".filterContainer")
 const toggleEls = document.querySelectorAll(".toggle")
@@ -62,12 +63,18 @@ closeMenuBtnEl.addEventListener("click", event => {
 openMenuBtnEl.addEventListener("click", event => {
     mobilMenuEl.classList.toggle("hidden")
 })
-if (filterBtnEl) {
-    filterBtnEl.addEventListener("click", event => {
+if (filterMobelBtnEl) {
+    filterMobelBtnEl.addEventListener("click", event => {
         filterBoxEl.classList.remove("hidden")
     })
+    closeFilterBtnEl.addEventListener("click", event => {
+        filterBoxEl.classList.add("hidden")
+    })
 }
-if (filterBtnEl) {
+if (filterDekorationBtnEl) {
+    filterDekorationBtnEl.addEventListener("click", event => {
+        filterBoxEl.classList.remove("hidden")
+    })
     closeFilterBtnEl.addEventListener("click", event => {
         filterBoxEl.classList.add("hidden")
     })
@@ -94,9 +101,15 @@ for (let index = 0; index < inputEl.length; index++) {
     });
 
 }
-if (toggleEls) {
+if (toggleEls && filterMobelBtnEl) {
     toggleEls.forEach(toggle => {
-        toggle.addEventListener("change", () => filterProdukter(produktListeContainerEl))
+        toggle.addEventListener("change", () => filterMobelProdukter(produktListeContainerEl))
+
+    })
+}
+if (toggleEls && filterDekorationBtnEl) {
+    toggleEls.forEach(toggle => {
+        toggle.addEventListener("change", () => filterDekorationsProdukter(produktListeContainerEl))
 
     })
 }
@@ -179,107 +192,180 @@ function hentProdukterFraTaxonomy(kategori, bredde, dybde, favoritter, fremstill
 
 
 /* Filtrer produkt og tag en placering */
-function filterProdukter(placering) {
+function filterMobelProdukter(placering) {
     placering.innerHTML = ""; /* Fjern hvad der står i placeringen i øjeblikket */
     let tilladtBredder = [] /* Variablen med tomt array til at holde taxonomier i den aktuelle kategori */
     let tilladtDybder = []
-    let tilladtHøjder = []
+    let tilladtHojder = []
     let tilladtPriser = []
     let tilladtFremstilling = []
     let tilladtType = []
 
 
     /* Hvis elementet i HTMLet med et bestemt id er checked */
-    if (document.querySelector("#breddeUnder50Filter").checked) {
+    if (document.querySelector("#breddeUnder50MobelFilter").checked) {
         /* Hvis den er checked, indsæt dens værdi i det aktuelle array */
-        tilladtBredder.push(document.querySelector("#breddeUnder50Filter").value);
+        tilladtBredder.push(document.querySelector("#breddeUnder50MobelFilter").value);
     }
-    if (document.querySelector("#bredde50-100Filter").checked) {
-        tilladtBredder.push(document.querySelector("#bredde50-100Filter").value);
+    if (document.querySelector("#bredde50-100MobelFilter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde50-100MobelFilter").value);
     }
-    if (document.querySelector("#bredde101-150Filter").checked) {
-        tilladtBredder.push(document.querySelector("#bredde101-150Filter").value);
+    if (document.querySelector("#bredde101-150MobelFilter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde101-150MobelFilter").value);
     }
-    if (document.querySelector("#bredde151-200Filter").checked) {
-        tilladtBredder.push(document.querySelector("#bredde151-200Filter").value);
+    if (document.querySelector("#bredde151-200MobelFilter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde151-200MobelFilter").value);
     }
-    if (document.querySelector("#breddeOver200Filter").checked) {
-        tilladtBredder.push(document.querySelector("#breddeOver200Filter").value);
+
+    if (document.querySelector("#dybdeUnder50MobelFilter").checked) {
+        tilladtDybder.push(document.querySelector("#dybdeUnder50MobelFilter").value)
     }
-    if (document.querySelector("#dybdeUnder50Filter").checked) {
-        tilladtDybder.push(document.querySelector("#dybdeUnder50Filter").value)
+    if (document.querySelector("#dybde50-100MobelFilter").checked) {
+        tilladtDybder.push(document.querySelector("#dybde50-100MobelFilter").value)
     }
-    if (document.querySelector("#dybde50-100Filter").checked) {
-        tilladtDybder.push(document.querySelector("#dybde50-100Filter").value)
+    if (document.querySelector("#dybde101-150MobelFilter").checked) {
+        tilladtDybder.push(document.querySelector("#dybde101-150MobelFilter").value)
     }
-    if (document.querySelector("#dybde101-150Filter").checked) {
-        tilladtDybder.push(document.querySelector("#dybde101-150Filter").value)
+
+
+    if (document.querySelector("#hojdeUnder50MobelFilter").checked) {
+        tilladtHojder.push(document.querySelector("#hojdeUnder50MobelFilter").value);
     }
-    if (document.querySelector("#dybde151-200Filter").checked) {
-        tilladtDybder.push(document.querySelector("#dybde151-200Filter").value);
+    if (document.querySelector("#hojde50-100MobelFilter").checked) {
+        tilladtHojder.push(document.querySelector("#hojde50-100MobelFilter").value);
     }
-    if (document.querySelector("#dybdeOver200Filter").checked) {
-        tilladtDybder.push(document.querySelector("#dybdeOver200Filter").value);
-        // }
-        // if (document.querySelector("#sommerFilter").checked) {
-        //     tilladtArstid.push(document.querySelector("#sommerFilter").value);
-        // }
-        // if (document.querySelector("#vinterFilter").checked) {
-        //     tilladtArstid.push(document.querySelector("#vinterFilter").value);
-        // }
-        // if (document.querySelector("#diabetesFilter").checked) {
-        //     tilladtDiet.push(document.querySelector("#diabetesFilter").value);
-        // }
-        // if (document.querySelector("#laktoseFilter").checked) {
-        //     tilladtDiet.push(document.querySelector("#laktoseFilter").value)
-        // }
-        // if (document.querySelector("#vegatarFilter").checked) {
-        //     tilladtDiet.push(document.querySelector("#vegatarFilter").value)
-        // }
-        // if (document.querySelector("#forretFilter").checked) {
-        //     tilladtMaltidstype.push(document.querySelector("#forretFilter").value)
-        // }
-        // if (document.querySelector("#hovedretFilter").checked) {
-        //     tilladtMaltidstype.push(document.querySelector("#hovedretFilter").value);
-        // }
-        // if (document.querySelector("#dessertFilter").checked) {
-        //     tilladtMaltidstype.push(document.querySelector("#dessertFilter").value);
-        // }
-        // if (document.querySelector("#varmtFilter").checked) {
-        //     tilladtTemperatur.push(document.querySelector("#varmtFilter").value);
-        // }
-        // if (document.querySelector("#koldFilter").checked) {
-        //     tilladtTemperatur.push(document.querySelector("#koldFilter").value);
-        // }
-        // if (document.querySelector("#lynhurtigtFilter").checked) {
-        //     tilladtTilberedningstid.push(document.querySelector("#lynhurtigtFilter").value);
-        // }
-        // if (document.querySelector("#hurtigFilter").checked) {
-        //     tilladtTilberedningstid.push(document.querySelector("#hurtigFilter").value)
-        // }
-        // if (document.querySelector("#mellemFilter").checked) {
-        //     tilladtTilberedningstid.push(document.querySelector("#mellemFilter").value)
-        // }
-        // if (document.querySelector("#langsomFilter").checked) {
-        //     tilladtTilberedningstid.push(document.querySelector("#langsomFilter").value);
-        // }
-        // if (document.querySelector("#asiasiskFilter").checked) {
-        //     tilladtVerdensmad.push(document.querySelector("#asiasiskFilter").value);
-        // }
-        // if (document.querySelector("#italienskFilter").checked) {
-        //     tilladtVerdensmad.push(document.querySelector("#italienskFilter").value);
-        // }
-        // if (document.querySelector("#mellemøstiskFilter").checked) {
-        //     tilladtVerdensmad.push(document.querySelector("#mellemøstiskFilter").value)
-        // }
-        // if (document.querySelector("#mexicanskFilter").checked) {
-        //     tilladtVerdensmad.push(document.querySelector("#mexicanskFilter").value)
+    if (document.querySelector("#hojde101-150MobelFilter").checked) {
+        tilladtHojder.push(document.querySelector("#hojde101-150MobelFilter").value);
     }
+
+    if (document.querySelector("#prisUnder500MobelFilter").checked) {
+        tilladtPriser.push(document.querySelector("#prisUnder500MobelFilter").value)
+    }
+    if (document.querySelector("#pris500-1000MobelFilter").checked) {
+        tilladtPriser.push(document.querySelector("#pris500-1000MobelFilter").value)
+    }
+    if (document.querySelector("#pris1001-2000MobelFilter").checked) {
+        tilladtPriser.push(document.querySelector("#pris1001-2000MobelFilter").value)
+    }
+    if (document.querySelector("#pris2001-4000MobelFilter").checked) {
+        tilladtPriser.push(document.querySelector("#pris2001-4000MobelFilter").value);
+    }
+    if (document.querySelector("#pris4001-6000MobelFilter").checked) {
+        tilladtPriser.push(document.querySelector("#pris4001-6000MobelFilter").value);
+    }
+
+    if (document.querySelector("#handlavetMobelFilter").checked) {
+        tilladtFremstilling.push(document.querySelector("#handlavetMobelFilter").value);
+    }
+    if (document.querySelector("#masseproduceretMobelFilter").checked) {
+        tilladtFremstilling.push(document.querySelector("#masseproduceretMobelFilter").value);
+    }
+
+    if (document.querySelector("#stolFilter").checked) {
+        tilladtType.push(document.querySelector("#stolFilter").value);
+    }
+    if (document.querySelector("#benkFilter").checked) {
+        tilladtType.push(document.querySelector("#benkFilter").value)
+    }
+    if (document.querySelector("#bordFilter").checked) {
+        tilladtType.push(document.querySelector("#bordFilter").value)
+    }
+    if (document.querySelector("#multiFilter").checked) {
+        tilladtType.push(document.querySelector("#multiFilter").value);
+    }
+
     /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
-    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHøjder, tilladtPriser, tilladtType, 100, placering)
+    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHojder, tilladtPriser, tilladtType, 100, placering)
 }
 
+function filterDekorationsProdukter(placering) {
+    placering.innerHTML = ""; /* Fjern hvad der står i placeringen i øjeblikket */
+    let tilladtBredder = [] /* Variablen med tomt array til at holde taxonomier i den aktuelle kategori */
+    let tilladtDybder = []
+    let tilladtHojder = []
+    let tilladtPriser = []
+    let tilladtFremstilling = []
+    let tilladtType = []
 
+
+    /* Hvis elementet i HTMLet med et bestemt id er checked */
+    if (document.querySelector("#breddeUnder50DekoFilter").checked) {
+        /* Hvis den er checked, indsæt dens værdi i det aktuelle array */
+        tilladtBredder.push(document.querySelector("#breddeUnder50DekoFilter").value);
+    }
+    if (document.querySelector("#bredde50-100DekoFilter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde50-100DekoFilter").value);
+    }
+    if (document.querySelector("#bredde101-150DekoFilter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde101-150DekoFilter").value);
+    }
+    if (document.querySelector("#bredde151-200DekoFilter").checked) {
+        tilladtBredder.push(document.querySelector("#bredde151-200DekoFilter").value);
+    }
+
+    if (document.querySelector("#dybdeUnder50DekoFilter").checked) {
+        tilladtDybder.push(document.querySelector("#dybdeUnder50DekoFilter").value)
+    }
+    if (document.querySelector("#dybde50-100DekoFilter").checked) {
+        tilladtDybder.push(document.querySelector("#dybde50-100DekoFilter").value)
+    }
+    if (document.querySelector("#dybde101-150DekoFilter").checked) {
+        tilladtDybder.push(document.querySelector("#dybde101-150DekoFilter").value)
+    }
+
+
+    if (document.querySelector("#hojdeUnder50DekoFilter").checked) {
+        tilladtHojder.push(document.querySelector("#hojdeUnder50DekoFilter").value);
+    }
+    if (document.querySelector("#hojde50-100DekoFilter").checked) {
+        tilladtHojder.push(document.querySelector("#hojde50-100DekoFilter").value);
+    }
+    if (document.querySelector("#hojde101-150DekoFilter").checked) {
+        tilladtHojder.push(document.querySelector("#hojde101-150DekoFilter").value);
+    }
+
+    if (document.querySelector("#prisUnder500DekoFilter").checked) {
+        tilladtPriser.push(document.querySelector("#prisUnder500DekoFilter").value)
+    }
+    if (document.querySelector("#pris500-1000DekoFilter").checked) {
+        tilladtPriser.push(document.querySelector("#pris500-1000DekoFilter").value)
+    }
+    if (document.querySelector("#pris1001-2000DekoFilter").checked) {
+        tilladtPriser.push(document.querySelector("#pris1001-2000DekoFilter").value)
+    }
+    if (document.querySelector("#pris2001-4000DekoFilter").checked) {
+        tilladtPriser.push(document.querySelector("#pris2001-4000DekoFilter").value);
+    }
+    if (document.querySelector("#pris4001-6000DekoFilter").checked) {
+        tilladtPriser.push(document.querySelector("#pris4001-6000DekoFilter").value);
+    }
+
+    if (document.querySelector("#handlavetDekoFilter").checked) {
+        tilladtFremstilling.push(document.querySelector("#handlavetDekoFilter").value);
+    }
+    if (document.querySelector("#masseproduceretDekoFilter").checked) {
+        tilladtFremstilling.push(document.querySelector("#masseproduceretDekoFilter").value);
+    }
+
+    if (document.querySelector("#tekstilFilter").checked) {
+        tilladtType.push(document.querySelector("#tekstilFilter").value);
+    }
+    if (document.querySelector("#bakkerOgFadeFilter").checked) {
+        tilladtType.push(document.querySelector("#bakkerOgFadeFilter").value)
+    }
+    if (document.querySelector("#kokkentilbehorFilter").checked) {
+        tilladtType.push(document.querySelector("#kokkentilbehorFilter").value)
+    }
+    if (document.querySelector("#boligdekorationFilter").checked) {
+        tilladtType.push(document.querySelector("#boligdekorationFilter").value);
+    }
+    if (document.querySelector("#skulpturFilter").checked) {
+        tilladtType.push(document.querySelector("#skulpturFilter").value);
+    }
+
+    /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
+    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHojder, tilladtPriser, tilladtType, 100, placering)
+}
 
 /************************************
 DYNAMISK OPSÆTNING AF HTML
@@ -341,8 +427,11 @@ ${behandlingsIndhold}
 
 function renderFooter() {
     footerEl.innerHTML += `
+    <div>
     <a href="./index.html" class="logo">Solkilde</a>
     <p>Åbent hver weekend og <br> helligdage fra 12-16 og efter aftale.</p>
+    </div>
+    <div>
     <div class="telefon">
         <i class="fa-solid fa-phone"></i><a href="tel:+4523951990">+45 2395
             1990</a><!--https://fontawesome.com/icons/phone?f=classic&s=solid-->
@@ -365,6 +454,7 @@ function renderFooter() {
     <div class="copyright">
         <i class="fa-regular fa-copyright"></i>
         <p>Solkilde</p> <!--https://fontawesome.com/icons/copyright?f=classic&s=regular-->
+    </div>
     </div>
 `
 }

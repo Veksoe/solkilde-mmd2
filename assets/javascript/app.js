@@ -275,7 +275,7 @@ function filterProdukter(placering) {
         // if (document.querySelector("#mexicanskFilter").checked) {
         //     tilladtVerdensmad.push(document.querySelector("#mexicanskFilter").value)
     }
-    /* Kør funktionen der henter opskrifter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
+    /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
     hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHøjder, tilladtPriser, tilladtType, 100, placering)
 }
 

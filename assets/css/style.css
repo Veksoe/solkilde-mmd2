@@ -747,3 +747,14 @@ footer .copyright p {
 .hidden {
     display: none;
 }
+
+/* --- MEDIA QUERY--- */
+
+@media only screen and (min-width: 1000px) {
+
+    main {
+        grid-template-columns: 10% repeat(12, 1fr) 10%;
+
+    }
+
+}

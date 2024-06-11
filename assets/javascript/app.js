@@ -28,7 +28,8 @@ const filterMobelBtnEl = document.querySelector("#mobler");
 const filterDekorationBtnEl = document.querySelector(
     "#dekorationer"
 );
-const seFlereBtn = document.querySelector(".produkter button");
+const seFlereMoblerBtn = document.querySelector(".produkter.mobler button");
+const seFlereBoligdekorationBtn = document.querySelector(".produkter.boligdekoration button");
 const filterContainernEl = document.querySelector(".filterContainer");
 const toggleEls = document.querySelectorAll(".toggle");
 const footerEl = document.querySelector("footer");
@@ -106,9 +107,14 @@ if (filterDekorationBtnEl) {
     });
 }
 
-if (seFlereBtn) {
-    seFlereBtn.addEventListener("click", (event) => {
+if (seFlereMoblerBtn) {
+    seFlereMoblerBtn.addEventListener("click", (event) => {
         hentProdukter(produktListeMoblerContainerEl, "34", 9, elements.length);
+    });
+}
+if (seFlereBoligdekorationBtn) {
+    seFlereBoligdekorationBtn.addEventListener("click", (event) => {
+        hentProdukter(produktListeBoligdekorationContainerEl, "37", 9, elements.length);
     });
 }
 
@@ -452,6 +458,7 @@ function filterDekorationsProdukter(placering) {
     }
 
     if (document.querySelector("#tekstilFilter").checked || document.querySelector("#tekstilFilterDesktop").checked) {
+        console.log(document.querySelector("#tekstilFilter").value)
         tilladtType.push(document.querySelector("#tekstilFilter").value);
     }
     if (document.querySelector("#bakkerOgFadeFilter").checked || document.querySelector("#bakkerOgFadeFilterDesktop").checked) {

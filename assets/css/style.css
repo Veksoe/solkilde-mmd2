@@ -737,6 +737,7 @@ footer .copyright p {
 @media only screen and (min-width: 1200px) {
     main {
         grid-template-columns: 10% repeat(12, 1fr) 10%;
+        gap: var(--standardSpacing);
     }
 
     .fullWidthMobil {
@@ -947,8 +948,13 @@ footer .copyright p {
         margin-right: var(--largeSpacing);
     }
 
-    .desktopNav a {
+    .desktopNav.index a {
         color: var(--baseTextLightColor);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    .desktopNav a {
         text-decoration: none;
         font-size: 1.2rem;
         font-weight: 500;
@@ -971,5 +977,36 @@ footer .copyright p {
 
     .desktopNav a:hover {
         /* todo */
+    }
+    .beskrivelse{
+        grid-column: 4/11;
+
+    }
+    .filterMobilContainer {
+        display: none;
+    }
+    .filterDesktopContainer{
+        display: flex;
+        grid-column: 1/5;
+    }
+    .filterDesktopContainer .filterBox {
+        padding: var(--mediumSpacing);
+        background: white;
+        border: 2px solid var(--interactableColor);
+        border-radius: var(--borderRadius);
+        width: 100%;
+        max-height: 1250px;
+    }
+    .produkter{
+        grid-column: 5/-2;
+    }
+    .produktPreview {
+        width: 31%;
+    }
+    .produktPreview img{
+        height: 250px;
+    }
+    .produkter button{
+        margin: auto;
     }
 }

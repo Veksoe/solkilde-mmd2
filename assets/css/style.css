@@ -81,6 +81,10 @@
     display: none;
 }
 
+.filterDesktopContainer {
+    display: none;
+}
+
 /* --- GENERALS --- */
 
 body {
@@ -987,7 +991,7 @@ footer .copyright p {
     }
     .filterDesktopContainer{
         display: flex;
-        grid-column: 1/5;
+        grid-column: 2/5;
     }
     .filterDesktopContainer .filterBox {
         padding: var(--mediumSpacing);
@@ -996,6 +1000,10 @@ footer .copyright p {
         border-radius: var(--borderRadius);
         width: 100%;
         max-height: 1250px;
+    }
+    .filterDesktopContainer h3{
+        text-align: left;
+        font-size: 1rem;
     }
     .produkter{
         grid-column: 5/-2;

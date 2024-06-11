@@ -1017,4 +1017,15 @@ footer .copyright p {
     .produkter button{
         margin: auto;
     }
+    .opstilling{
+        display: flex;
+    }
+    .opstilling .imgContainer{
+        width: 50%;
+        height: 100%;
+    }
+    .opstilling .text{
+        width: 50%;
+        padding: var(--largeSpacing) var(--xLargeSpacing);
+    }
 }

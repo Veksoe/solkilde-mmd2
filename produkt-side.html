@@ -1,100 +1,66 @@
 <!DOCTYPE html>
 <html lang="da">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="-" />
-    <!--UPDATE-->
-    <meta name="keywords" content="-" />
-    <!--UPDATE-->
 
-    <title>Solkilde</title>
-    <!--UPDATE-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="-" />
+  <!--UPDATE-->
+  <meta name="keywords" content="-" />
+  <!--UPDATE-->
 
-    <link rel="icon" type="image/x-icon" href="./assets/fav.svg" />
-    <!-- UPDATE-->
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script src="./assets/javascript/app.js" defer></script>
-  </head>
+  <title>Solkilde</title>
+  <!--UPDATE-->
 
-  <body>
-    <header class="fullWidthMobil">
-      <nav>
-        <a href="./index.html" class="logo">Solkilde</a>
-        <button aria-label="menu" class="menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <!--https://fontawesome.com/icons/bars?f=classic&s=solid-->
-        <div class="mobilMenu hidden">
-          <button aria-label="close menu">
-            <i class="fa-solid fa-xmark"></i></button
-          ><!--https://fontawesome.com/icons/xmark?f=classic&s=solid-->
-          <p class="logo">Solkilde</p>
-          <ul>
-            <li><a href="./index.html">Forside</a></li>
-            <li><a href="./mobler.html">Møbler</a></li>
-            <li><a href="./boligdekoration.html">Boligdekoration</a></li>
-            <li><a href="./inspiration.html">Inspiration fra butikken</a></li>
-            <li><a href="./om-os.html">Om os</a></li>
-          </ul>
-        </div>
-        <ul class="desktopNav">
+  <link rel="icon" type="image/x-icon" href="./assets/fav.svg" />
+  <!-- UPDATE-->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="./assets/javascript/app.js" defer></script>
+</head>
+
+<body>
+  <header class="fullWidthMobil">
+    <nav>
+      <a href="./index.html" class="logo">Solkilde</a>
+      <button aria-label="menu" class="menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <!--https://fontawesome.com/icons/bars?f=classic&s=solid-->
+      <div class="mobilMenu hidden">
+        <button aria-label="close menu">
+          <i class="fa-solid fa-xmark"></i></button><!--https://fontawesome.com/icons/xmark?f=classic&s=solid-->
+        <p class="logo">Solkilde</p>
+        <ul>
           <li><a href="./index.html">Forside</a></li>
           <li><a href="./mobler.html">Møbler</a></li>
           <li><a href="./boligdekoration.html">Boligdekoration</a></li>
           <li><a href="./inspiration.html">Inspiration fra butikken</a></li>
           <li><a href="./om-os.html">Om os</a></li>
         </ul>
-      </nav>
-    </header>
+      </div>
+      <ul class="desktopNav">
+        <li><a href="./index.html">Forside</a></li>
+        <li><a href="./mobler.html">Møbler</a></li>
+        <li><a href="./boligdekoration.html">Boligdekoration</a></li>
+        <li><a href="./inspiration.html">Inspiration fra butikken</a></li>
+        <li><a href="./om-os.html">Om os</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
+  <main>
 
-      <section class="produktsideContainerMobil fullWidthMobil fullWidthDesktop">
-      
-<div class="aalImgShit"> 
-<div class="imgContainer mainImg"><img src="./assets/img/index-hero.jpg" alt=""></div>
-<div class="imgsContainer">
-  <img src="./assets/img/ingen-behandling.png" alt=""> 
-  <img src="./assets/img/ingen-behandling.png" alt=""> 
-  <img src="./assets/img/ingen-behandling.png" alt=""> 
-  <img src="./assets/img/ingen-behandling.png" alt=""> 
-  <img src="./assets/img/ingen-behandling.png" alt=""> 
-  </div>
-</div>
+    <section class="produktsideContainerMobil fullWidthMobil fullWidthDesktop">
 
-    <div class="produktInfo">
-<h1>${produkt.title .rendered} Faaaauck</h1>
-<p class="pris">${produkt.acf .pris} Øøøøhm</p>
-<div class="size">
-    <p>Bredde ${produkt.acf.bredde}</p>
-    <p>Dybde ${produkt.acf.dybde}</p>
-    <p>Højde ${produkt.acf.hojde}</p>
-</div>
-<div class="teak">
-  <div class="imgContainer">
-<img src="./assets/img/certificering.png" alt=""></div>
-<a href="./om-os.html#fremstilling">Lavet af plantageteak</a>
-</div>
-<p>beskrivelse</p>
-<p>Hvis produktet skal stå ude, og du ønsker at bevare farven, giv produktet olie 1-2 gang årligt.
-  <a href="./om-os.html#behandlingOgPleje">Læs mere om behandling.</a>
-  </p>
 
-</div>
-    
-</section>
+    </section>
 
-      <section class="faq">
-        <h2>Ofte stillede spørgsmål</h2>
-        <div class="allFaq">
+    <section class="faq">
+      <h2>Ofte stillede spørgsmål</h2>
+      <div class="allFaq">
         <div class="faqBox">
           <h3>
             <span class="icon">?</span> Kan træproduktet stå ude hele året?
@@ -124,39 +90,42 @@
           </p>
         </div>
       </div>
-      </section>
-      <section class="contact fullWidthMobil">
-        <h2>Spørgsmål til produktet</h2>
-        <form class="contactForm">
+    </section>
+    <section class="contact fullWidthMobil">
+      <h2>Spørgsmål til produktet</h2>
+      <form class="contactForm">
+        <div class="formContainer">
           <div class="formGroup">
             <label for="name">Navn</label>
             <input class="input" type="text" name="name" id="name" required />
           </div>
           <div class="formGroup">
             <label for="email">Email</label>
-            <input
-              class="input"
-              type="email"
-              name="email"
-              id="email"
-              required
-            />
+            <input class="input" type="email" name="email" id="email" required />
           </div>
           <div class="formGroup">
-            <label for="email">Besked</label>
+            <label for="produkt">Produkt</label>
+            <input class="input" type="text" name="produkt" id="produkt" required />
+          </div>
+        </div>
+        <div class="formContainer">
+          <div class="formGroup">
+            <label for="message">Besked</label>
             <textarea class="input" name="message" id="message" required>
             </textarea>
+            <button id="submitBtn" type="submit">Send</button>
           </div>
-          <button id="submitBtn" type="submit">Send</button>
-        </form>
-      </section>
+        </div>
+      </form>
+    </section>
 
-      <section>
-        <h2>Relaterede produkter</h2>
-        <div class="relateredeProdukter produktContainer"></div>
-      </section>
-    </main>
+    <section>
+      <h2>Relaterede produkter</h2>
+      <div class="relateredeProdukter produktContainer"></div>
+    </section>
+  </main>
 
-    <footer></footer>
-  </body>
+  <footer></footer>
+</body>
+
 </html>

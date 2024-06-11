@@ -486,7 +486,9 @@ DYNAMISK OPSÆTNING AF HTML
 function renderPreviewProdukt(produkt, placering) {
     let previewBillede;
     if (produkt.acf.billeder.billede_1 !== false) {
-        previewBillede = produkt.acf.billeder.billede_1.sizes.medium;
+        previewBillede = `<img srcset="${produkt.acf.billeder.billede_1.sizes.medium} 200w, ${produkt.acf.billeder.billede_1.sizes.large} 600w"
+        sizes="(max-width: 600px)  200px, 600px"
+        src="${produkt.acf.billeder.billede_1.sizes.medium}" alt="${produkt.acf.billeder.billede_1.alt}" >`;
     } else {
         previewBillede = "";
     }
@@ -494,7 +496,7 @@ function renderPreviewProdukt(produkt, placering) {
     placering.innerHTML += ` 
                        <article class="produktPreview">
                     <a href="./produkt-side.html?id=${produkt.id}">
-                        <img src="${previewBillede}" alt="${produkt.acf.billeder.billede_1.alt}" >
+                        ${previewBillede}
                         <h3>${produkt.title.rendered}</h3>
                     </a>
                 </article>
@@ -505,33 +507,88 @@ function renderPreviewProdukt(produkt, placering) {
 function renderFuldProdukt(produkt, placering) {
     let certificeringsIndhold;
     let behandlingsIndhold;
+    let ekstrabillede1;
+    let ekstrabillede2;
+    let ekstrabillede3;
+    let ekstrabillede4;
+    let ekstrabillede5;
+
     if (produkt.acf.plantageteak !== "Nej") {
-        certificeringsIndhold = `<div class="teak"><div class="imgContainer">
-<img src="./assets/img/certificering.png" alt=""></div>
-<a href="./om-os.html#fremstilling">Lavet af plantageteak</a>
-</div>`;
-        behandlingsIndhold = `<p>Hvis produktet skal stå ude, og du ønsker at bevare farven, giv produktet olie 1-2 gang årligt.
-<a href="./om-os.html#behandlingOgPleje">Læs mere om behandling.</a>
-</p>`;
+        certificeringsIndhold = `
+        <div class="teak"><div class="imgContainer">
+            <img src="./assets/img/certificering.png" alt=""></div>
+            <a href="./om-os.html#fremstilling">Lavet af plantageteak</a>
+        </div>`;
+        behandlingsIndhold = `
+        <p>Hvis produktet skal stå ude, og du ønsker at bevare farven, giv produktet olie 1-2 gang årligt.
+          <a href="./om-os.html#behandlingOgPleje">Læs mere om behandling.</a>
+        </p>`;
     } else {
         certificeringsIndhold = "";
         behandlingsIndhold = "";
     }
 
-    placering.innerHTML += ` <div class="imgContainer"><img src="${produkt.acf.billeder.billede_1.sizes.medium_large}" alt="${produkt.acf.billeder.billede_1.alt}"></div>
-    <div class="produktInfo">
-<h1>${produkt.title.rendered}</h1>
-<p class="pris">${produkt.acf.pris}</p>
-<div class="size">
-    <p>Bredde ${produkt.acf.bredde}</p>
-    <p>Dybde ${produkt.acf.dybde}</p>
-    <p>Højde ${produkt.acf.hojde}</p>
-</div>
-${certificeringsIndhold}
-<p>${produkt.acf.beskrivelse}</p>
-${behandlingsIndhold}
+    if (produkt.acf.billeder.billede_2) {
+        ekstrabillede1 = `
+        <img src="${produkt.acf.billeder.billede_2.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_2.alt}">`
+    } else {
+        ekstrabillede1 = ""
+    }
+    if (produkt.acf.billeder.billede_3) {
+        ekstrabillede2 = `
+        <img src="${produkt.acf.billeder.billede_3.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_3.alt}">`
+    } else {
+        ekstrabillede2 = ""
+    }
+    if (produkt.acf.billeder.billede_4) {
+        ekstrabillede3 = `
+        <img src="${produkt.acf.billeder.billede_4.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_4.alt}">`
+    } else {
+        ekstrabillede3 = ""
+    }
+    if (produkt.acf.billeder.billede_5) {
+        ekstrabillede4 = `
+        <img src="${produkt.acf.billeder.billede_5.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_5.alt}">`
+    } else {
+        ekstrabillede4 = ""
+    }
+    if (produkt.acf.billeder.billede_6) {
+        ekstrabillede5 = `
+        <img src="${produkt.acf.billeder.billede_6.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_6.alt}">`
+    } else {
+        ekstrabillede5 = ""
+    }
 
-</div>`;
+    placering.innerHTML += ` 
+   <div class="produktImgContainer">
+    <div class="imgContainer mainImg">
+        <img  srcset="${produkt.acf.billeder.billede_1.sizes.medium_large} 400w, ${produkt.acf.billeder.billede_1.sizes.large} 800w"
+        sizes="(max-width: 400px)  400px, 800px"
+        src="${produkt.acf.billeder.billede_1.sizes.medium_large}" alt="${produkt.acf.billeder.billede_1.alt}">
+    </div>
+    <div class="imgsContainer">
+        ${ekstrabillede1}
+        ${ekstrabillede2}
+        ${ekstrabillede3}
+        ${ekstrabillede4}
+        ${ekstrabillede5}
+        
+    </div>
+    </div>
+
+    <div class="produktInfo">
+        <h1>${produkt.title.rendered}</h1>
+        <p class="pris">${produkt.acf.pris}</p>
+        <div class="size">
+           <p>Bredde ${produkt.acf.bredde}</p>
+           <p>Dybde ${produkt.acf.dybde}</p>
+         <p>Højde ${produkt.acf.hojde}</p>
+        </div>
+    ${certificeringsIndhold}
+    <p>${produkt.acf.beskrivelse}</p>
+    ${behandlingsIndhold}
+
+    </div>`;
     opdaterTabTitle(produkt.title.rendered + " - Solkilde");
 }
 

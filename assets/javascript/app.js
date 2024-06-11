@@ -261,48 +261,48 @@ function filterMobelProdukter(placering) {
     let tilladtType = [];
 
     /* Hvis elementet i HTMLet med et bestemt id er checked */
-    if (document.querySelector("#breddeUnder50MobelFilter").checked) {
+    if (document.querySelector("#breddeUnder50MobelFilter").checked || document.querySelector("#breddeUnder50MobelFilterDesktop").checked) {
         /* Hvis den er checked, indsæt dens værdi i det aktuelle array */
         tilladtBredder.push(
             document.querySelector("#breddeUnder50MobelFilter").value
         );
     }
-    if (document.querySelector("#bredde50-100MobelFilter").checked) {
+    if (document.querySelector("#bredde50-100MobelFilter").checked || document.querySelector("#bredde50-100MobelFilterDesktop").checked) {
         tilladtBredder.push(
             document.querySelector("#bredde50-100MobelFilter").value
         );
     }
-    if (document.querySelector("#bredde101-150MobelFilter").checked) {
+    if (document.querySelector("#bredde101-150MobelFilter").checked || document.querySelector("#bredde101-150MobelFilterDesktop").checked) {
         tilladtBredder.push(
             document.querySelector("#bredde101-150MobelFilter").value
         );
     }
-    if (document.querySelector("#bredde151-200MobelFilter").checked) {
+    if (document.querySelector("#bredde151-200MobelFilter").checked || document.querySelector("#bredde151-200MobelFilterDesktop").checked) {
         tilladtBredder.push(
             document.querySelector("#bredde151-200MobelFilter").value
         );
     }
 
-    if (document.querySelector("#dybdeUnder50MobelFilter").checked) {
+    if (document.querySelector("#dybdeUnder50MobelFilter").checked || document.querySelector("#dybdeUnder50MobelFilterDesktop").checked) {
         tilladtDybder.push(
             document.querySelector("#dybdeUnder50MobelFilter").value
         );
     }
-    if (document.querySelector("#dybde50-100MobelFilter").checked) {
+    if (document.querySelector("#dybde50-100MobelFilter").checked || document.querySelector("#dybde50-100MobelFilterDesktop").checked) {
         tilladtDybder.push(document.querySelector("#dybde50-100MobelFilter").value);
     }
-    if (document.querySelector("#dybde101-150MobelFilter").checked) {
+    if (document.querySelector("#dybde101-150MobelFilter").checked || document.querySelector("#dybde101-150MobelFilterDesktop").checked) {
         tilladtDybder.push(
             document.querySelector("#dybde101-150MobelFilter").value
         );
     }
 
-    if (document.querySelector("#hojdeUnder50MobelFilter").checked) {
+    if (document.querySelector("#hojdeUnder50MobelFilter").checked || document.querySelector("#hojdeUnder50MobelFilterDesktop").checked) {
         tilladtHojder.push(
             document.querySelector("#hojdeUnder50MobelFilter").value
         );
     }
-    if (document.querySelector("#hojde50-100MobelFilter").checked) {
+    if (document.querySelector("#hojde50-100MobelFilter").checked || document.querySelector("#hojde50-100MobelFilterDesktop").checked) {
         tilladtHojder.push(document.querySelector("#hojde50-100MobelFilter").value);
     }
     if (document.querySelector("#hojde101-150MobelFilter").checked) {
@@ -311,53 +311,53 @@ function filterMobelProdukter(placering) {
         );
     }
 
-    if (document.querySelector("#prisUnder500MobelFilter").checked) {
+    if (document.querySelector("#prisUnder500MobelFilter").checked || document.querySelector("#prisUnder500MobelFilterDesktop").checked) {
         tilladtPriser.push(
             document.querySelector("#prisUnder500MobelFilter").value
         );
     }
-    if (document.querySelector("#pris500-1000MobelFilter").checked) {
+    if (document.querySelector("#pris500-1000MobelFilter").checked || document.querySelector("#pris500-1000MobelFilterDesktop").checked) {
         tilladtPriser.push(
             document.querySelector("#pris500-1000MobelFilter").value
         );
     }
-    if (document.querySelector("#pris1001-2000MobelFilter").checked) {
+    if (document.querySelector("#pris1001-2000MobelFilter").checked || document.querySelector("#pris1001-2000MobelFilterDesktop").checked) {
         tilladtPriser.push(
             document.querySelector("#pris1001-2000MobelFilter").value
         );
     }
-    if (document.querySelector("#pris2001-4000MobelFilter").checked) {
+    if (document.querySelector("#pris2001-4000MobelFilter").checked || document.querySelector("#pris2001-4000MobelFilterDesktop").checked) {
         tilladtPriser.push(
             document.querySelector("#pris2001-4000MobelFilter").value
         );
     }
-    if (document.querySelector("#pris4001-6000MobelFilter").checked) {
+    if (document.querySelector("#pris4001-6000MobelFilter").checked || document.querySelector("#pris4001-6000MobelFilterDesktop").checked) {
         tilladtPriser.push(
             document.querySelector("#pris4001-6000MobelFilter").value
         );
     }
 
-    if (document.querySelector("#handlavetMobelFilter").checked) {
+    if (document.querySelector("#handlavetMobelFilter").checked || document.querySelector("#handlavetMobelFilterDesktop").checked) {
         tilladtFremstilling.push(
             document.querySelector("#handlavetMobelFilter").value
         );
     }
-    if (document.querySelector("#masseproduceretMobelFilter").checked) {
+    if (document.querySelector("#masseproduceretMobelFilter").checked || document.querySelector("#masseproduceretMobelFilterDesktop").checked) {
         tilladtFremstilling.push(
             document.querySelector("#masseproduceretMobelFilter").value
         );
     }
 
-    if (document.querySelector("#stolFilter").checked) {
+    if (document.querySelector("#stolFilter").checked || document.querySelector("#stolFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#stolFilter").value);
     }
-    if (document.querySelector("#benkFilter").checked) {
+    if (document.querySelector("#benkFilter").checked || document.querySelector("#benkFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#benkFilter").value);
     }
-    if (document.querySelector("#bordFilter").checked) {
+    if (document.querySelector("#bordFilter").checked || document.querySelector("#bordFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#bordFilter").value);
     }
-    if (document.querySelector("#multiFilter").checked) {
+    if (document.querySelector("#multiFilter").checked || document.querySelector("#multiFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#multiFilter").value);
     }
 
@@ -398,7 +398,7 @@ function filterDekorationsProdukter(placering) {
         );
     }
 
-    if (document.querySelector("#dybdeUnder50DekoFilter").checked || document.querySelector("#dybdeUnder50DekoFilterDekstop").checked) {
+    if (document.querySelector("#dybdeUnder50DekoFilter").checked || document.querySelector("#dybdeUnder50DekoFilterDesktop").checked) {
         tilladtDybder.push(document.querySelector("#dybdeUnder50DekoFilter").value);
     }
     if (document.querySelector("#dybde50-100DekoFilter").checked || document.querySelector("#dybde50-100DekoFilterDesktop").checked) {

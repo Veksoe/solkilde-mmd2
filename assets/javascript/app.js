@@ -163,10 +163,14 @@ function hentProdukter(placering, kategori, antal, offset) {
     )
         .then((res) => res.json())
         .then((data) => {
-            // if (data !== antal) {
-            //     console.log("tesr")
-            //     seFlereBtn.classList.add("hidden")
-            // }
+            if (data.length !== antal) {
+                if (seFlereMoblerBtn) {
+                    seFlereMoblerBtn.style.display = "none"
+                }
+                if (seFlereBoligdekorationBtn) {
+                    seFlereBoligdekorationBtn.style.display = "none"
+                }
+            }
             elements = elements.concat(data);
             data.forEach((produkt) =>
                 renderPreviewProdukt(produkt, placering)

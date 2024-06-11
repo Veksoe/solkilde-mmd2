@@ -246,13 +246,13 @@ header h1 {
 header h2 {
     font-size: 1.6rem;
     font-family: "Poppins", sans-serif;
-    margin: 0;
+    margin:-13% 0;
     font-weight: 500;
     color: var(--baseTextLightColor);
 }
 
 header .heroTextBox {
-    background: rgba(0, 0, 0, 0.4);
+    /* background: rgba(0, 0, 0, 0.4); */
     min-height: 200px;
     position: relative;
     bottom: -45%;
@@ -266,7 +266,7 @@ header .scroll {
     flex-direction: column;
     font-weight: 700;
     position: relative;
-    bottom: -44%;
+    bottom: -52%;
 }
 
 header .scroll p {

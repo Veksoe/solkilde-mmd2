@@ -376,94 +376,94 @@ function filterDekorationsProdukter(placering) {
     let tilladtType = [];
 
     /* Hvis elementet i HTMLet med et bestemt id er checked */
-    if (document.querySelector("#breddeUnder50DekoFilter").checked) {
+    if (document.querySelector("#breddeUnder50DekoFilter").checked || document.querySelector("#breddeUnder50DekoFilterDesktop").checked) {
         /* Hvis den er checked, indsæt dens værdi i det aktuelle array */
         tilladtBredder.push(
             document.querySelector("#breddeUnder50DekoFilter").value
         );
     }
-    if (document.querySelector("#bredde50-100DekoFilter").checked) {
+    if (document.querySelector("#bredde50-100DekoFilter").checked || document.querySelector("#bredde50-100DekoFilterDesktop").checked) {
         tilladtBredder.push(
             document.querySelector("#bredde50-100DekoFilter").value
         );
     }
-    if (document.querySelector("#bredde101-150DekoFilter").checked) {
+    if (document.querySelector("#bredde101-150DekoFilter").checked || document.querySelector("#bredde101-150DekoFilterDesktop").checked) {
         tilladtBredder.push(
             document.querySelector("#bredde101-150DekoFilter").value
         );
     }
-    if (document.querySelector("#bredde151-200DekoFilter").checked) {
+    if (document.querySelector("#bredde151-200DekoFilter").checked || document.querySelector("#bredde151-200DekoFilterDesktop").checked) {
         tilladtBredder.push(
             document.querySelector("#bredde151-200DekoFilter").value
         );
     }
 
-    if (document.querySelector("#dybdeUnder50DekoFilter").checked) {
+    if (document.querySelector("#dybdeUnder50DekoFilter").checked || document.querySelector("#dybdeUnder50DekoFilterDekstop").checked) {
         tilladtDybder.push(document.querySelector("#dybdeUnder50DekoFilter").value);
     }
-    if (document.querySelector("#dybde50-100DekoFilter").checked) {
+    if (document.querySelector("#dybde50-100DekoFilter").checked || document.querySelector("#dybde50-100DekoFilterDesktop").checked) {
         tilladtDybder.push(document.querySelector("#dybde50-100DekoFilter").value);
     }
-    if (document.querySelector("#dybde101-150DekoFilter").checked) {
+    if (document.querySelector("#dybde101-150DekoFilter").checked || document.querySelector("#dybde101-150DekoFilterDesktop").checked) {
         tilladtDybder.push(document.querySelector("#dybde101-150DekoFilter").value);
     }
 
-    if (document.querySelector("#hojdeUnder50DekoFilter").checked) {
+    if (document.querySelector("#hojdeUnder50DekoFilter").checked || document.querySelector("#hojdeUnder50DekoFilterDesktop").checked) {
         tilladtHojder.push(document.querySelector("#hojdeUnder50DekoFilter").value);
     }
-    if (document.querySelector("#hojde50-100DekoFilter").checked) {
+    if (document.querySelector("#hojde50-100DekoFilter").checked || document.querySelector("#hojde50-100DekoFilterDesktop").checked) {
         tilladtHojder.push(document.querySelector("#hojde50-100DekoFilter").value);
     }
-    if (document.querySelector("#hojde101-150DekoFilter").checked) {
+    if (document.querySelector("#hojde101-150DekoFilter").checked || document.querySelector("#hojde101-150DekoFilterDesktop").checked) {
         tilladtHojder.push(document.querySelector("#hojde101-150DekoFilter").value);
     }
 
-    if (document.querySelector("#prisUnder500DekoFilter").checked) {
+    if (document.querySelector("#prisUnder500DekoFilter").checked || document.querySelector("#prisUnder500DekoFilterDesktop").checked) {
         tilladtPriser.push(document.querySelector("#prisUnder500DekoFilter").value);
     }
-    if (document.querySelector("#pris500-1000DekoFilter").checked) {
+    if (document.querySelector("#pris500-1000DekoFilter").checked || document.querySelector("#pris500-1000DekoFilterDesktop").checked) {
         tilladtPriser.push(document.querySelector("#pris500-1000DekoFilter").value);
     }
-    if (document.querySelector("#pris1001-2000DekoFilter").checked) {
+    if (document.querySelector("#pris1001-2000DekoFilter").checked || document.querySelector("#pris1001-2000DekoFilterDesktop").checked) {
         tilladtPriser.push(
             document.querySelector("#pris1001-2000DekoFilter").value
         );
     }
-    if (document.querySelector("#pris2001-4000DekoFilter").checked) {
+    if (document.querySelector("#pris2001-4000DekoFilter").checked || document.querySelector("#pris2001-4000DekoFilterDesktop").checked) {
         tilladtPriser.push(
             document.querySelector("#pris2001-4000DekoFilter").value
         );
     }
-    if (document.querySelector("#pris4001-6000DekoFilter").checked) {
+    if (document.querySelector("#pris4001-6000DekoFilter").checked || document.querySelector("#pris4001-6000DekoFilterDesktop").checked) {
         tilladtPriser.push(
             document.querySelector("#pris4001-6000DekoFilter").value
         );
     }
 
-    if (document.querySelector("#handlavetDekoFilter").checked) {
+    if (document.querySelector("#handlavetDekoFilter").checked || document.querySelector("#handlavetDekoFilterDesktop").checked) {
         tilladtFremstilling.push(
             document.querySelector("#handlavetDekoFilter").value
         );
     }
-    if (document.querySelector("#masseproduceretDekoFilter").checked) {
+    if (document.querySelector("#masseproduceretDekoFilter").checked || document.querySelector("#masseproduceretDekoFilterDesktop").checked) {
         tilladtFremstilling.push(
             document.querySelector("#masseproduceretDekoFilter").value
         );
     }
 
-    if (document.querySelector("#tekstilFilter").checked) {
+    if (document.querySelector("#tekstilFilter").checked || document.querySelector("#tekstilFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#tekstilFilter").value);
     }
-    if (document.querySelector("#bakkerOgFadeFilter").checked) {
+    if (document.querySelector("#bakkerOgFadeFilter").checked || document.querySelector("#bakkerOgFadeFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#bakkerOgFadeFilter").value);
     }
-    if (document.querySelector("#kokkentilbehorFilter").checked) {
+    if (document.querySelector("#kokkentilbehorFilter").checked || document.querySelector("#kokkentilbehorFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#kokkentilbehorFilter").value);
     }
-    if (document.querySelector("#boligdekorationFilter").checked) {
+    if (document.querySelector("#boligdekorationFilter").checked || document.querySelector("#boligdekorationFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#boligdekorationFilter").value);
     }
-    if (document.querySelector("#skulpturFilter").checked) {
+    if (document.querySelector("#skulpturFilter").checked || document.querySelector("#skulpturFilterDesktop").checked) {
         tilladtType.push(document.querySelector("#skulpturFilter").value);
     }
 

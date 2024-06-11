@@ -84,7 +84,9 @@
 .filterDesktopContainer {
     display: none;
 }
-
+.imgsContainer{
+    display: none;
+}
 /* --- GENERALS --- */
 
 body {
@@ -222,7 +224,7 @@ a.btn:hover,
 }
 
 header.index {
-    background-image: url("../img/index-hero.jpg");
+    background-image: url("../img/solkildeHero02.jpg");
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -1008,7 +1010,7 @@ footer .copyright p {
     .produkter{
         grid-column: 5/-2;
     }
-    .produktPreview {
+    .produkter .produktPreview {
         width: 31%;
     }
     .produktPreview img{
@@ -1028,4 +1030,44 @@ footer .copyright p {
         width: 50%;
         padding: var(--largeSpacing) var(--xLargeSpacing);
     }
+/* selve Produket */
+.allFaq{
+    display: flex;
+    gap: var(--standardSpacing);  
+}
+.allFaq .faqBox{
+  width: fit-content;
+  margin: 0;
+  height: 1fr;
+
+}
+.faqBox p {
+    margin: 0 var(--standardSpacing) var(--standardSpacing);
+}
+.produktContainer.relateredeProdukter{
+    flex-wrap: nowrap;
+}
+.produktsideContainerMobil{
+    display: flex; 
+    margin: 0;
+}
+.mainImg img{
+  
+    border-radius: 0 10px 10px 0 ;
+}
+.produktsideContainerMobil .imgContainer{
+    height: fit-content;
+}
+.imgsContainer{
+    
+    display: flex;
+    width: 10%;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.imgsContainer img{
+  border-radius: var(--borderRadius);  
+  margin: var(--smallSpacing);
+}
 }

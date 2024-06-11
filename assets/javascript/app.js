@@ -24,9 +24,9 @@ const mobilMenuEl = document.querySelector("nav .mobilMenu");
 const filterBoxEl = document.querySelector(".filterBox");
 
 const inputEl = document.querySelectorAll(".input");
-const filterMobelBtnEl = document.querySelector(".mobler .filterBtn");
+const filterMobelBtnEl = document.querySelector("#mobler");
 const filterDekorationBtnEl = document.querySelector(
-    ".dekorationer .filterBtn"
+    "#dekorationer"
 );
 const seFlereBtn = document.querySelector(".produkter button");
 const filterContainernEl = document.querySelector(".filterContainer");
@@ -126,6 +126,7 @@ for (let index = 0; index < inputEl.length; index++) {
 }
 if (toggleEls && filterMobelBtnEl) {
     toggleEls.forEach((toggle) => {
+        console.log("help")
         toggle.addEventListener("change", () =>
             filterMobelProdukter(produktListeContainerEl)
         );
@@ -361,7 +362,7 @@ function filterMobelProdukter(placering) {
     }
 
     /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
-    hentProdukterFraTaxonomy("37", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHojder, tilladtPriser, tilladtType, 100, placering);
+    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHojder, tilladtPriser, tilladtType, 100, placering);
 }
 
 function filterDekorationsProdukter(placering) {
@@ -467,7 +468,7 @@ function filterDekorationsProdukter(placering) {
     }
 
     /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
-    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHojder, tilladtPriser, tilladtType, 100, placering);
+    hentProdukterFraTaxonomy("37", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHojder, tilladtPriser, tilladtType, 100, placering);
 }
 
 /************************************

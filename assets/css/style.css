@@ -202,7 +202,8 @@ a.btn,
 
 a.btn:hover,
 .produkter button:hover,
-.filterMobilContainer button:hover {
+.filterMobilContainer button:hover,
+.contact #submitBtn:hover {
     background: var(--hoverButtonColor);
     transform: scale(1.05);
     transition: 0.3s ease-in-out;
@@ -239,20 +240,18 @@ header h1 {
     font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     font-weight: 700;
-    /* margin-top: 350px; */
     color: var(--baseTextLightColor);
 }
 
 header h2 {
     font-size: 1.6rem;
     font-family: "Poppins", sans-serif;
-    margin:-13% 0;
+    margin: -13% 0;
     font-weight: 500;
     color: var(--baseTextLightColor);
 }
 
 header .heroTextBox {
-    /* background: rgba(0, 0, 0, 0.4); */
     min-height: 200px;
     position: relative;
     bottom: -15%;
@@ -285,13 +284,14 @@ header .scroll p {
     animation: bounce 1.8s ease infinite;
 
 }
+
 @keyframes bounce {
-  50%{
-    transform: translateY(-30%);
-  }  
+    50% {
+        transform: translateY(-30%);
+    }
 }
+
 nav {
-    /* padding: var(--mediumSpacing) var(--mediumSpacing) var(--smallSpacing) var(--mediumSpacing); */
     display: flex;
     justify-content: space-between;
 }
@@ -559,6 +559,12 @@ footer .copyright p {
     font-weight: 400;
 }
 
+.produktPreview:hover {
+    transform: scale(1.02) rotate(2deg);
+
+    transition: .6s;
+}
+
 /* --- PRODUKT SIDE  --- */
 
 .produktsideContainerMobil .imgContainer {
@@ -634,6 +640,8 @@ footer .copyright p {
     width: 100%;
     padding: 15px var(--standardSpacing);
     font-family: "Poppins", sans-serif;
+    cursor: pointer;
+
 }
 
 .contact textarea {
@@ -677,6 +685,7 @@ footer .copyright p {
     font-weight: 700;
     margin: var(--smallSpacing) 0 var(--largeSpacing) 0;
 }
+
 
 /* --- FILTER --- */
 .filterMobilContainer {
@@ -727,6 +736,7 @@ footer .copyright p {
     height: 20px;
     border-radius: var(--borderRadius);
     border: 92px solid #222;
+    cursor: pointer;
 }
 
 .filterBox label {
@@ -758,30 +768,38 @@ footer .copyright p {
         background-position: center;
         position: relative;
     }
-    header .heroTextBox{
-            min-height: 200px;
-            position: relative;
-            bottom: -15%;
-            left: -17%;
-        }
-        header h2 {
-            font-size: 1.6rem;
-            font-family: "Poppins", sans-serif;
-            margin: -2% 0;
-            font-weight: 500;
-            color: var(--baseTextLightColor);
-        }
-    
-        header .scroll {
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            font-weight: 700;
-            position: relative;
-            bottom: -62%;
-        }
+
+    header .heroTextBox {
+        min-height: 200px;
+        position: relative;
+        bottom: -15%;
+        left: -17%;
+    }
+
+    header h1 {
+        font-size: 8.6rem;
+        margin: 0;
+    }
+
+    header h2 {
+        font-size: 2.5rem;
+        font-family: "Poppins", sans-serif;
+        margin: -50px 0;
+        font-weight: 500;
+        color: var(--baseTextLightColor);
+    }
+
+    header .scroll {
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        font-weight: 700;
+        position: relative;
+        bottom: -62%;
+    }
+
     main {
         grid-template-columns: 10% repeat(12, 1fr) 10%;
         gap: var(--standardSpacing);
@@ -1019,14 +1037,28 @@ footer .copyright p {
         position: relative;
     }
 
+
+
     .active::after {
         width: 100%;
         left: 0;
         bottom: -5px;
     }
 
-    .desktopNav a:hover {
-        /* todo */
+    .desktopNav li::after {
+        content: "";
+        width: 100%;
+        height: 5px;
+        background: var(--hoverButtonColor);
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        transform: scaleX(0);
+        transition: 0.25s ease-in;
+    }
+
+    .desktopNav li:hover::after {
+        transform: scaleX(1);
     }
 
     .beskrivelse {

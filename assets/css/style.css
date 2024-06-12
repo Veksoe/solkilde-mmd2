@@ -780,7 +780,7 @@ footer .copyright p {
             flex-direction: column;
             font-weight: 700;
             position: relative;
-            bottom: -58%;
+            bottom: -62%;
         }
     main {
         grid-template-columns: 10% repeat(12, 1fr) 10%;

@@ -39,42 +39,26 @@ const urlParams = new URLSearchParams(window.location.search);
 /* Variable der sætter et id, ud fra hvad der står efter "id" i url/search baren */
 const id = urlParams.get("id");
 
-//!!!
-let elements = [];
+/* Array til at holde produkter der er hentet */
+let hentetProdukter = [];
 
 /************************************
 KALD AF FUNKTIONERNE
 *************************************/
 if (produktListeFavContainerEl) {
-    hentProdukterFraTaxonomy(
-        "34,37",
-        "",
-        "",
-        "35",
-        "",
-        "",
-        "",
-        "",
-        4,
-        produktListeFavContainerEl
-    );
+    hentProdukterFraTaxonomy("34,37", "", "", "35", "", "", "", "", 4, produktListeFavContainerEl);
 }
 if (produktListeMoblerContainerEl) {
-    hentProdukter(produktListeMoblerContainerEl, "34", 9, elements.length);
+    hentProdukter(produktListeMoblerContainerEl, "34", 9, hentetProdukter.length);
 }
 if (produktListeBoligdekorationContainerEl) {
-    hentProdukter(
-        produktListeBoligdekorationContainerEl,
-        "37",
-        9,
-        elements.length
-    );
+    hentProdukter(produktListeBoligdekorationContainerEl, "37", 9, hentetProdukter.length);
 }
 if (produktSideMobilContainerEL) {
-    hentProdukt(id, produktSideMobilContainerEL);
+    hentProduktside(id, produktSideMobilContainerEL);
 }
 if (produktRelateredeContainerEl) {
-    hentProdukter(produktRelateredeContainerEl, "34,37", 4, elements.length);
+    hentProdukter(produktRelateredeContainerEl, "34,37", 4, hentetProdukter.length);
 }
 
 if (footerEl) {
@@ -109,12 +93,12 @@ if (filterDekorationBtnEl) {
 
 if (seFlereMoblerBtn) {
     seFlereMoblerBtn.addEventListener("click", (event) => {
-        hentProdukter(produktListeMoblerContainerEl, "34", 9, elements.length);
+        hentProdukter(produktListeMoblerContainerEl, "34", 9, hentetProdukter.length);
     });
 }
 if (seFlereBoligdekorationBtn) {
     seFlereBoligdekorationBtn.addEventListener("click", (event) => {
-        hentProdukter(produktListeBoligdekorationContainerEl, "37", 9, elements.length);
+        hentProdukter(produktListeBoligdekorationContainerEl, "37", 9, hentetProdukter.length);
     });
 }
 
@@ -150,20 +134,14 @@ if (toggleEls && filterDekorationBtnEl) {
 HENT PRODUKTER PÅ FORSKELLIGE MÅDER
 *************************************/
 
-/* Hent alle produkter og tag en placering ind */
+/* Hent alle produkter og tag en placering, en kategori, et antal og et offset ind */
 function hentProdukter(placering, kategori, antal, offset) {
-    fetch(
-        baseUrl +
-        "?categories=" +
-        kategori +
-        "&per_page=" +
-        antal +
-        "&offset=" +
-        offset
-    )
+    fetch(baseUrl + "?categories=" + kategori + "&per_page=" + antal + "&offset=" + offset)
         .then((res) => res.json())
         .then((data) => {
+            /* Tjek om længden af det der bliver hentet, er det samme som det antal vi har sat i antal-parameteren */
             if (data.length !== antal) {
+                /* Hvis det ikke er ens, tjek om der er en seFlere-button på siden, og så sæt display=none på knappen. */
                 if (seFlereMoblerBtn) {
                     seFlereMoblerBtn.style.display = "none"
                 }
@@ -171,54 +149,38 @@ function hentProdukter(placering, kategori, antal, offset) {
                     seFlereBoligdekorationBtn.style.display = "none"
                 }
             }
-            elements = elements.concat(data);
-            data.forEach((produkt) =>
-                renderPreviewProdukt(produkt, placering)
-            ); /* For hvert object i datet, kør funktionen til at rendere preview af en produkt/produkt card. */
+            /* Tag arrayet med hentet produkter, og sæt det sammen med det data der bliver hentet. */
+            hentetProdukter = hentetProdukter.concat(data);
+            /* For hvert object i datet, kør funktionen til at rendere preview af en produkt/produkt card. */
+            data.forEach((produkt) => renderPreviewProdukt(produkt, placering));
         })
         .catch((err) => console.log("Noget gik galt: " + err));
 }
 
-function hentProdukt(produktId, placering) {
-    fetch(
-        baseUrl + "/" + produktId
-    ) /* Fetch link med id fra den specefikke produkt vi ønsker at hente.  */
+/* Hent et produkt og tag et id og en placering ind */
+function hentProduktside(produktId, placering) {
+    /* Fetch link med id fra den specefikke produkt vi ønsker at hente.  */
+    fetch(baseUrl + "/" + produktId)
         .then((res) => res.json())
         .then((data) => {
-            renderFuldProdukt(
-                data,
-                placering
-            ); /* Kald funktionen der renderer en produkt med dataet der bliver fetchet og hvor den skal placeres på siden  */
+            /* Kald funktionen der renderer en produkt med dataet der bliver fetchet og hvor den skal placeres på siden  */
+            renderFuldProdukt(data, placering);
         })
         .catch((err) => console.log("Noget gik galt: " + err));
 }
 
 /* Hent produkter og fra bestemt taxonomi og taxonomierne, et antal der skal vises og en placering  */
-function hentProdukterFraTaxonomy(
-    kategori,
-    bredde,
-    dybde,
-    favoritter,
-    fremstillingsmetode,
-    hojde,
-    pris,
-    produkt_type,
-    antal,
-    placering
-) {
-    let filteretUrl =
-        baseUrl +
-        "?categories=" +
-        kategori +
-        "&per_page=" +
-        antal; /* Variable til at holde url'et til filtreringen af produkter */
-    let query = ""; /* Variable til at holde det vi vil filtere ud fra */
+function hentProdukterFraTaxonomy(kategori, bredde, dybde, favoritter, fremstillingsmetode,
+    hojde, pris, produkt_type, antal, placering) {
+    /* Variable til at holde url'et til filtreringen af produkter */
+    let filteretUrl = baseUrl + "?categories=" + kategori + "&per_page=" + antal;
+    /* Variable til at holde det vi vil filtere ud fra */
+    let query = "";
 
+    /* Tjekker om vi sætter noget i parameteret */
     if (bredde && bredde.length !== 0) {
-        /* Tjekker om vi sætter noget i parameteret */
-        query +=
-            "&bredde=" +
-            bredde; /* Hvis der er sat noget, ligger vi det til vores query variable, sammen med teksten til den kategori */
+        /* Hvis den er sat, ligger vi det til vores query variable, sammen med teksten til den kategori */
+        query += "&bredde=" + bredde;
     }
 
     if (dybde && dybde.length !== 0) {
@@ -242,9 +204,8 @@ function hentProdukterFraTaxonomy(
         query += "&produkt_type=" + produkt_type;
     }
 
-    fetch(
-        filteretUrl + query
-    ) /* Hent datet fra linket der kommer når vi ligger vores query variable sammen med vores filteretUrl */
+    /* Hent datet fra linket der kommer når vi ligger vores query variable sammen med vores filteretUrl */
+    fetch(filteretUrl + query)
         .then((res) => res.json())
         .then((data) => {
             if (data.length === 0) {
@@ -252,18 +213,24 @@ function hentProdukterFraTaxonomy(
                 placering.innerHTML += `<p>Der er desværre ingen prdukter der matcher dit valg</p>`;
             } else {
                 data.forEach((produkt) =>
+                    /* Hvis der er noget data kør kør funktionen til at rendere preview af en produkt/produkt card for hver data */
                     renderPreviewProdukt(produkt, placering)
-                ); /* Hvis der er noget data kør kør funktionen til at rendere preview af en produkt/produkt card for hver data */
+                );
             }
         })
         .catch((err) => console.log("Noget gik galt: " + err));
 }
 
-/* Filtrer produkt og tag en placering */
+/************************************
+FILTERING AF PRODUKTER
+*************************************/
+
+/* Filtrer produkt i møbler og tag en placering */
 function filterMobelProdukter(placering) {
-    placering.innerHTML = ""; /* Fjern hvad der står i placeringen i øjeblikket */
-    let tilladtBredder =
-        []; /* Variablen med tomt array til at holde taxonomier i den aktuelle kategori */
+    /* Fjern hvad der står i placeringen i øjeblikket */
+    placering.innerHTML = "";
+    /* Variablen med tomt array til at holde taxonomier i den aktuelle kategori */
+    let tilladtBredder = [];
     let tilladtDybder = [];
     let tilladtHojder = [];
     let tilladtPriser = [];
@@ -271,7 +238,8 @@ function filterMobelProdukter(placering) {
     let tilladtType = [];
 
     /* Hvis elementet i HTMLet med et bestemt id er checked */
-    if (document.querySelector("#breddeUnder50MobelFilter").checked || document.querySelector("#breddeUnder50MobelFilterDesktop").checked) {
+    if (document.querySelector("#breddeUnder50MobelFilter").checked ||
+        document.querySelector("#breddeUnder50MobelFilterDesktop").checked) {
         /* Hvis den er checked, indsæt dens værdi i det aktuelle array */
         tilladtBredder.push(
             document.querySelector("#breddeUnder50MobelFilter").value
@@ -371,10 +339,13 @@ function filterMobelProdukter(placering) {
         tilladtType.push(document.querySelector("#multiFilter").value);
     }
 
-    /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
-    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHojder, tilladtPriser, tilladtType, 100, placering);
+    /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de 
+    valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og 
+    hvor det skal vises. */
+    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling,
+        tilladtHojder, tilladtPriser, tilladtType, 100, placering);
 }
-
+/* Filtrer produkt i dekorationer og tag en placering */
 function filterDekorationsProdukter(placering) {
     placering.innerHTML = ""; /* Fjern hvad der står i placeringen i øjeblikket */
     let tilladtBredder =
@@ -489,35 +460,36 @@ DYNAMISK OPSÆTNING AF HTML
 /* Render preview til en produkt / produkt card */
 function renderPreviewProdukt(produkt, placering) {
     let previewBillede;
+    /* Tjek at der er noget sat i billede_1 */
     if (produkt.acf.billeder.billede_1 !== false) {
-        previewBillede = `<img srcset="${produkt.acf.billeder.billede_1.sizes.medium} 200w, ${produkt.acf.billeder.billede_1.sizes.large} 600w"
-        sizes="(max-width: 600px)  200px, 600px"
+        /* Hvis der er noget sat, gem htmlen for billedet og hent billeder fra produkt-parameteren i en variable. */
+        previewBillede = `
+        <img srcset="${produkt.acf.billeder.billede_1.sizes.medium} 300w, 
+                     ${produkt.acf.billeder.billede_1.sizes.large} 1024w"
+        sizes="(max-width: 650px)  300px, 1024px"
         src="${produkt.acf.billeder.billede_1.sizes.medium}" alt="${produkt.acf.billeder.billede_1.alt}" >`;
     } else {
+        /* Hvis den ikke er sat, sæt variablen til at være med en tom string.*/
         previewBillede = "";
     }
     /* Brug innerHTML på placeringen sat i funktions kaldet til at indsætte indholdet */
+    /* Indsæt variablen til preview billede samt indhold hentet fra produkt-parameteren */
     placering.innerHTML += ` 
-                       <article class="produktPreview">
-                    <a href="./produkt-side.html?id=${produkt.id}">
-                        ${previewBillede}
-                        <h3>${produkt.title.rendered}</h3>
-                    </a>
-                </article>
-
-            </div>`;
+            <article class="produktPreview">
+                 <a href="./produkt-side.html?id=${produkt.id}">
+                    ${previewBillede}
+                    <h3>${produkt.title.rendered}</h3>
+                 </a>
+             </article>`;
 }
 
 function renderFuldProdukt(produkt, placering) {
+
     let certificeringsIndhold;
     let behandlingsIndhold;
-    let ekstrabillede1;
-    let ekstrabillede2;
-    let ekstrabillede3;
-    let ekstrabillede4;
-    let ekstrabillede5;
-
+    /* Tjek om produktet sat i parameteren har værdien "nej" i plantageteak*/
     if (produkt.acf.plantageteak !== "Nej") {
+        /* Hvis der ikke står nej, gem HTMLen i variablerne */
         certificeringsIndhold = `
         <div class="teak"><div class="imgContainer">
             <img src="./assets/img/certificering.png" alt=""></div>
@@ -528,37 +500,51 @@ function renderFuldProdukt(produkt, placering) {
           <a href="./om-os.html#behandlingOgPleje">Læs mere om behandling.</a>
         </p>`;
     } else {
+        /* Hvis der står nej, gem en tom string i variablerne */
         certificeringsIndhold = "";
         behandlingsIndhold = "";
     }
 
+    let ekstrabillede1;
+    let ekstrabillede2;
+    let ekstrabillede3;
+    let ekstrabillede4;
+    let ekstrabillede5;
+    /* Tjek at der er noget sat i billede_2 */
     if (produkt.acf.billeder.billede_2) {
+        /* Hvis der er noget sat, gem htmlen for billedet og hent billedet fra produkt-parameteren i en variable. */
         ekstrabillede1 = `
-        <img src="${produkt.acf.billeder.billede_2.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_2.alt}">`
+        <img src="${produkt.acf.billeder.billede_2.sizes.medium}" 
+        alt="${produkt.acf.billeder.billede_2.alt}">`
     } else {
+        /* Hvis den ikke er sat, sæt variablen til at være med en tom string.*/
         ekstrabillede1 = ""
     }
     if (produkt.acf.billeder.billede_3) {
         ekstrabillede2 = `
-        <img src="${produkt.acf.billeder.billede_3.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_3.alt}">`
+        <img src="${produkt.acf.billeder.billede_3.sizes.medium}" 
+        alt="${produkt.acf.billeder.billede_3.alt}">`
     } else {
         ekstrabillede2 = ""
     }
     if (produkt.acf.billeder.billede_4) {
         ekstrabillede3 = `
-        <img src="${produkt.acf.billeder.billede_4.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_4.alt}">`
+        <img src="${produkt.acf.billeder.billede_4.sizes.medium}" 
+        alt="${produkt.acf.billeder.billede_4.alt}">`
     } else {
         ekstrabillede3 = ""
     }
     if (produkt.acf.billeder.billede_5) {
         ekstrabillede4 = `
-        <img src="${produkt.acf.billeder.billede_5.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_5.alt}">`
+        <img src="${produkt.acf.billeder.billede_5.sizes.medium}" 
+        alt="${produkt.acf.billeder.billede_5.alt}">`
     } else {
         ekstrabillede4 = ""
     }
     if (produkt.acf.billeder.billede_6) {
         ekstrabillede5 = `
-        <img src="${produkt.acf.billeder.billede_6.sizes.thumbnail}" alt="${produkt.acf.billeder.billede_6.alt}">`
+        <img src="${produkt.acf.billeder.billede_6.sizes.medium}" 
+        alt="${produkt.acf.billeder.billede_6.alt}">`
     } else {
         ekstrabillede5 = ""
     }
@@ -566,9 +552,11 @@ function renderFuldProdukt(produkt, placering) {
     placering.innerHTML += ` 
    <div class="produktImgContainer">
     <div class="imgContainer mainImg">
-        <img  srcset="${produkt.acf.billeder.billede_1.sizes.medium_large} 400w, ${produkt.acf.billeder.billede_1.sizes.large} 800w"
-        sizes="(max-width: 400px)  400px, 800px"
-        src="${produkt.acf.billeder.billede_1.sizes.medium_large}" alt="${produkt.acf.billeder.billede_1.alt}">
+        <img  srcset="${produkt.acf.billeder.billede_1.sizes.medium_large} 700w, 
+        ${produkt.acf.billeder.billede_1.sizes.large} 950w"
+        sizes="(max-width: 600px)  700px, 950px"
+        src="${produkt.acf.billeder.billede_1.sizes.medium_large}" 
+        alt="${produkt.acf.billeder.billede_1.alt}">
     </div>
     <div class="imgsContainer">
         ${ekstrabillede1}
@@ -576,10 +564,8 @@ function renderFuldProdukt(produkt, placering) {
         ${ekstrabillede3}
         ${ekstrabillede4}
         ${ekstrabillede5}
-        
+            </div>
     </div>
-    </div>
-
     <div class="produktInfo">
         <h1>${produkt.title.rendered}</h1>
         <p class="pris">${produkt.acf.pris}</p>
@@ -591,11 +577,12 @@ function renderFuldProdukt(produkt, placering) {
     ${certificeringsIndhold}
     <p>${produkt.acf.beskrivelse}</p>
     ${behandlingsIndhold}
-
     </div>`;
+    /* Kør funktionen der opdatere titlen i tabben, og indsæt prduktet titel */
     opdaterTabTitle(produkt.title.rendered + " - Solkilde");
 }
 
+/* Render footeren */
 function renderFooter() {
     footerEl.innerHTML += `
     <div>

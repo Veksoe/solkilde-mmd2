@@ -227,10 +227,10 @@ a.btn:hover,
 }
 
 header.index {
-    background-image: url("../img/Hero01.jpg");
+    background-image: url("../img/HeroMobil01.jpg");
     height: 100vh;
     background-size: cover;
-    background-position: center;
+    background-position: right;
     position: relative;
 }
 
@@ -255,7 +255,7 @@ header .heroTextBox {
     /* background: rgba(0, 0, 0, 0.4); */
     min-height: 200px;
     position: relative;
-    bottom: -45%;
+    bottom: -15%;
 }
 
 header .scroll {
@@ -282,8 +282,14 @@ header .scroll p {
     border-radius: var(--round);
     width: 60px;
     height: 60px;
-}
+    animation: bounce 1.8s ease infinite;
 
+}
+@keyframes bounce {
+  50%{
+    transform: translateY(-30%);
+  }  
+}
 nav {
     /* padding: var(--mediumSpacing) var(--mediumSpacing) var(--smallSpacing) var(--mediumSpacing); */
     display: flex;
@@ -744,6 +750,38 @@ footer .copyright p {
 }
 
 @media only screen and (min-width: 1200px) {
+
+    header.index {
+        background-image: url("../img/Hero01.jpg");
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+    header .heroTextBox{
+            min-height: 200px;
+            position: relative;
+            bottom: -15%;
+            left: -17%;
+        }
+        header h2 {
+            font-size: 1.6rem;
+            font-family: "Poppins", sans-serif;
+            margin: -2% 0;
+            font-weight: 500;
+            color: var(--baseTextLightColor);
+        }
+    
+        header .scroll {
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            font-weight: 700;
+            position: relative;
+            bottom: -58%;
+        }
     main {
         grid-template-columns: 10% repeat(12, 1fr) 10%;
         gap: var(--standardSpacing);

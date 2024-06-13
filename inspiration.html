@@ -1,214 +1,192 @@
 <!DOCTYPE html>
 <html lang="da">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Find inspiration fra butikken Solkilde med et stort udvalg af unikke møbler, boligdekorationer og andet brugskunst, der kan forny dit hjem. Besøg os på vores hjemmeside eller i butikken."
-    />
-    <meta
-      name="keywords"
-      content="Solkilde, Tversted, galleri, kunsthåndværk, teaktræsmøbler, træskulpturer, boligdekoration, unikke møbler, lokal butik, inspiration, håndlavet kunst, sommerkjoler, tøj, smykker, øreringe, service"
-    />
 
-    <title>Solkilde - Inspiration</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Find inspiration fra butikken Solkilde med et stort udvalg af unikke møbler, boligdekorationer og andet brugskunst, der kan forny dit hjem. Besøg os på vores hjemmeside eller i butikken." />
+  <meta name="keywords"
+    content="Solkilde, Tversted, galleri, kunsthåndværk, teaktræsmøbler, træskulpturer, boligdekoration, unikke møbler, lokal butik, inspiration, håndlavet kunst, sommerkjoler, tøj, smykker, øreringe, service" />
 
-    <link rel="icon" type="image/x-icon" href="./assets/fav.svg" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script src="./assets/javascript/app.js" defer></script>
-  </head>
+  <title>Solkilde - Inspiration</title>
 
-  <body>
-    <header class="fullWidthMobil">
-      <nav>
-        <a href="./index.html" class="logo">Solkilde</a>
-        <button aria-label="menu" class="menu">
-          <i class="fa-solid fa-bars"></i>
+  <link rel="icon" type="image/x-icon" href="./assets/fav.svg" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="./assets/javascript/app.js" defer></script>
+</head>
+
+<body>
+  <header class="fullWidthMobil">
+    <nav>
+      <a href="./index.html" class="logo">Solkilde</a>
+      <button aria-label="menu" class="menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="mobilMenu hidden">
+        <button aria-label="close menu">
+          <i class="fa-solid fa-xmark"></i>
         </button>
-
-        <div class="mobilMenu hidden">
-          <button aria-label="close menu">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-          <p class="logo">Solkilde</p>
-          <ul>
-            <li><a href="./index.html">Forside</a></li>
-            <li><a href="./mobler.html">Møbler</a></li>
-            <li><a href="./boligdekoration.html">Boligdekoration</a></li>
-            <li>
-              <a class="active" href="./inspiration.html"
-                >Inspiration fra butikken</a
-              >
-            </li>
-            <li><a href="./om-os.html">Om os</a></li>
-          </ul>
-        </div>
-        <ul class="desktopNav">
+        <p class="logo">Solkilde</p>
+        <ul>
           <li><a href="./index.html">Forside</a></li>
           <li><a href="./mobler.html">Møbler</a></li>
           <li><a href="./boligdekoration.html">Boligdekoration</a></li>
           <li>
-            <a class="active" href="./inspiration.html"
-              >Inspiration fra butikken</a
-            >
+            <a class="active" href="./inspiration.html">Inspiration fra butikken</a>
           </li>
           <li><a href="./om-os.html">Om os</a></li>
         </ul>
-      </nav>
-    </header>
+      </div>
+      <ul class="desktopNav">
+        <li><a href="./index.html">Forside</a></li>
+        <li><a href="./mobler.html">Møbler</a></li>
+        <li><a href="./boligdekoration.html">Boligdekoration</a></li>
+        <li>
+          <a class="active" href="./inspiration.html">Inspiration fra butikken</a>
+        </li>
+        <li><a href="./om-os.html">Om os</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-      <section class="beskrivelse">
-        <h1>Inspiration fra butikken</h1>
+  <main>
+    <section class="beskrivelse">
+      <h1>Inspiration fra butikken</h1>
+      <p>
+        Vi har mange flere produkter i butikken end dem du kan se på
+        hjemmesiden, så vi opfordrer til at komme og besøge os i butikken. I
+        vores inspirationsliste kan du dog få en lille forsmag på hvad vi har
+        et byde på i butikken!
+      </p>
+    </section>
+    <section class="opstilling fullWidthMobil fullWidthDesktop">
+      <div class="imgContainer">
+        <img srcset=" ./assets/img/Insop01w800.jpg 600w, ./assets/img/Insop01.jpg 800w"
+          sizes="(max-width:700px ) 600px, 800px" src="./assets/img/Insop01w800.jpg 800w"
+          alt="Opstilling der viser nogle af varene i butikken, som sommerkjoler, malerier, smykker og tasker." />
+      </div>
+      <div class="text">
         <p>
-          Vi har mange flere produkter i butikken end dem du kan se på
-          hjemmesiden, så vi opfordrer til at komme og besøge os i butikken. I
-          vores inspirationsliste kan du dog få en lille forsmag på hvad vi har
-          et byde på i butikken!
+          Forny din garderobe med vores smukke sommerkjoler og smykker i
+          forskellige farver og varianter. Kom ind i butikken og find det
+          perfekte til dit sommeroutfit. På billedet har du følgende
+          produkter:
         </p>
-      </section>
-      <section class="opstilling fullWidthMobil fullWidthDesktop">
-        <div class="imgContainer">
-          <img
-          srcset="./assets/img/Insop01w800.jpg 800w, ./assets/img/Insop01.jpg 1000w"
-          sizes="(max-width:900) 600px, 800px"
-          src="./assets/img/Insop01w600.jpg"
-          alt="Opstilling der viser nogle af varene i butikken, som sommerkjoler, malerier, smykker og tasker."
-       />
-        </div>
-        <div class="text">
-          <p>
-            Forny din garderobe med vores smukke sommerkjoler og smykker i
-            forskellige farver og varianter. Kom ind i butikken og find det
-            perfekte til dit sommeroutfit. På billedet har du følgende
-            produkter:
-          </p>
-          <ul>
-            <li>Sommerkjole i flere farver</li>
-            <li>Øreringe i flere varianter</li>
-            <li>Taske fra Hans Hansen</li>
-            <li>Maleri fra lokal kunstner</li>
-            <li>Halstørklæde i flere varianter</li>
-            <li>Farverige perlearmbånd</li>
-            <li>Store rav-vedhæng til halskæder</li>
-            <li><a href="produkt-side.html?id=241">Træsvamp i teaktræ</a></li>
-          </ul>
-        </div>
-      </section>
-      <section class="opstilling fullWidthMobil fullWidthDesktop">
-        <div class="imgContainer">
-          <img
-            src="./assets/img/inspo07.jpg"
-            alt="Opstilling der viser nogle af varene i butikken, som klap stole og borde, service, hynder, skulptuere og vaser."
-          />
-        </div>
-        <div class="text">
-          <p>
-            Nyd en dejlig stund på terrassen eller i haven med vores charmerende
-            bordservice, flotte klapbord, unikke træfigurer og robuste
-            teakstole. Besøg butikken og find det perfekte setup til dit
-            morgenbord i haven. På billedet har du følgende produkter:
-          </p>
-          <ul>
-            <li>
-              <a href="produkt-side.html?id=263"> Horn stol fra Indonesien</a>
-            </li>
-            <li>
-              <a href="produkt-side.html?id=228">
-                Mønster puder fra Indonesien</a
-              >
-            </li>
-            <li><a href="produkt-side.html?id=241">Træsvamp i teaktræ</a></li>
-            <li>Glas fra Jens Jensen</li>
-            <li>Tallerkner fra Jens Jensen</li>
-            <li>Kaffe kande fra Ib Laursen</li>
-            <li>Vase fra Hans Hansen</li>
-            <li>
-              <a href="produkt-side.html?id=208">Smører kniv fra Ib Laursen</a>
-            </li>
-            <li>Klapbord fra Indonesien</li>
-            <li>Mini skål fra Ib Indonesien</li>
-            <li>Træstol fra Indonesien</li>
-          </ul>
-        </div>
-      </section>
-      <section class="opstilling fullWidthMobil fullWidthDesktop">
-        <div class="imgContainer">
-          <img
-            src="./assets/img/insp06.jpg"
-            alt="Opstilling der viser nogle af varene i butikken, som bakkerbode, kagestativer, kander, glas og tæpper."
-          />
-        </div>
-        <div class="text">
-          <p>
-            Opfrisk terrassen eller haven med vores charmerende bordservice,
-            flotte bakkebord og robuste rodbænke. Besøg butikken og find det
-            perfekte tilbehør til din kaffestund i haven. På billedet har du
-            følgende produkter:
-          </p>
-          <ul>
-            <li><a href="produkt-side.html?id=38">Rodbænk i teaktræ</a></li>
-            <li>Pynte puder fra Indonesien</li>
-            <li>
-              <a href="produkt-side.html?id=100">
-                Bakkebord med aftagelig bakke</a
-              >
-            </li>
-            <li>Glas fra Jens Jensen</li>
-            <li>Kagefad fra Ib Ibsen</li>
-            <li>Taske fra Hans Hansen</li>
-            <li>Rodkande fra Indonesien</li>
-            <li>Sommerligt tæppe</li>
-          </ul>
-        </div>
-      </section>
-      <section class="opstilling fullWidthMobil fullWidthDesktop">
-        <div class="imgContainer">
-          <img
-            src="./assets/img/insop06.jpg"
-            alt="Opstilling der viser nogle af varene i butikken, som klap stole og borde, service og hynder."
-          />
-        </div>
-        <div class="text">
-          <p>
-            Inviter veninderne hjem på terrassen eller i haven og dæk op med
-            vores charmerende bordservice, flotte klapbord, smukke hynder og
-            robuste teakstole. Besøg butikken og find det perfekte tilbehør til
-            din kaffestund i haven. På billedet har du følgende produkter:
-          </p>
-          <ul>
-            <li>
-              <a href="produkt-side.html?id=263"> Horn stol fra Indonesien</a>
-            </li>
-            <li>
-              <a href="produkt-side.html?id=100">
-                Bakkebord med aftagelig bakke</a
-              >
-            </li>
-            <li>Te sæt fra Jens Jensen</li>
-            <li>Lysestage fra Bo Bosen</li>
-            <li>Stofserviet fra Hans Hansen</li>
-            <li>Bordskåner fra Indonesien</li>
-            <li>Metal lystestage til tykke lys</li>
-            <li>Hynder i forskellige farver</li>
-          </ul>
-        </div>
-      </section>
+        <ul>
+          <li>Sommerkjole i flere farver</li>
+          <li>Øreringe i flere varianter</li>
+          <li>Taske fra Hans Hansen</li>
+          <li>Maleri fra lokal kunstner</li>
+          <li>Halstørklæde i flere varianter</li>
+          <li>Farverige perlearmbånd</li>
+          <li>Store rav-vedhæng til halskæder</li>
+          <li><a href="produkt-side.html?id=241">Træsvamp i teaktræ</a></li>
+        </ul>
+      </div>
+    </section>
+    <section class="opstilling fullWidthMobil fullWidthDesktop">
+      <div class="imgContainer">
+        <img src="./assets/img/inspo07.jpg"
+          alt="Opstilling der viser nogle af varene i butikken, som klap stole og borde, service, hynder, skulptuere og vaser." />
+      </div>
+      <div class="text">
+        <p>
+          Nyd en dejlig stund på terrassen eller i haven med vores charmerende
+          bordservice, flotte klapbord, unikke træfigurer og robuste
+          teakstole. Besøg butikken og find det perfekte setup til dit
+          morgenbord i haven. På billedet har du følgende produkter:
+        </p>
+        <ul>
+          <li>
+            <a href="produkt-side.html?id=263"> Horn stol fra Indonesien</a>
+          </li>
+          <li>
+            <a href="produkt-side.html?id=228">
+              Mønster puder fra Indonesien</a>
+          </li>
+          <li><a href="produkt-side.html?id=241">Træsvamp i teaktræ</a></li>
+          <li>Glas fra Jens Jensen</li>
+          <li>Tallerkner fra Jens Jensen</li>
+          <li>Kaffe kande fra Ib Laursen</li>
+          <li>Vase fra Hans Hansen</li>
+          <li>
+            <a href="produkt-side.html?id=208">Smører kniv fra Ib Laursen</a>
+          </li>
+          <li>Klapbord fra Indonesien</li>
+          <li>Mini skål fra Ib Indonesien</li>
+          <li>Træstol fra Indonesien</li>
+        </ul>
+      </div>
+    </section>
+    <section class="opstilling fullWidthMobil fullWidthDesktop">
+      <div class="imgContainer">
+        <img src="./assets/img/insp06.jpg"
+          alt="Opstilling der viser nogle af varene i butikken, som bakkerbode, kagestativer, kander, glas og tæpper." />
+      </div>
+      <div class="text">
+        <p>
+          Opfrisk terrassen eller haven med vores charmerende bordservice,
+          flotte bakkebord og robuste rodbænke. Besøg butikken og find det
+          perfekte tilbehør til din kaffestund i haven. På billedet har du
+          følgende produkter:
+        </p>
+        <ul>
+          <li><a href="produkt-side.html?id=38">Rodbænk i teaktræ</a></li>
+          <li>Pynte puder fra Indonesien</li>
+          <li>
+            <a href="produkt-side.html?id=100">
+              Bakkebord med aftagelig bakke</a>
+          </li>
+          <li>Glas fra Jens Jensen</li>
+          <li>Kagefad fra Ib Ibsen</li>
+          <li>Taske fra Hans Hansen</li>
+          <li>Rodkande fra Indonesien</li>
+          <li>Sommerligt tæppe</li>
+        </ul>
+      </div>
+    </section>
+    <section class="opstilling fullWidthMobil fullWidthDesktop">
+      <div class="imgContainer">
+        <img src="./assets/img/insop06.jpg"
+          alt="Opstilling der viser nogle af varene i butikken, som klap stole og borde, service og hynder." />
+      </div>
+      <div class="text">
+        <p>
+          Inviter veninderne hjem på terrassen eller i haven og dæk op med
+          vores charmerende bordservice, flotte klapbord, smukke hynder og
+          robuste teakstole. Besøg butikken og find det perfekte tilbehør til
+          din kaffestund i haven. På billedet har du følgende produkter:
+        </p>
+        <ul>
+          <li>
+            <a href="produkt-side.html?id=263"> Horn stol fra Indonesien</a>
+          </li>
+          <li>
+            <a href="produkt-side.html?id=100">
+              Bakkebord med aftagelig bakke</a>
+          </li>
+          <li>Te sæt fra Jens Jensen</li>
+          <li>Lysestage fra Bo Bosen</li>
+          <li>Stofserviet fra Hans Hansen</li>
+          <li>Bordskåner fra Indonesien</li>
+          <li>Metal lystestage til tykke lys</li>
+          <li>Hynder i forskellige farver</li>
+        </ul>
+      </div>
+    </section>
 
-      <section>
-        <h2>Vores favoritter</h2>
-        <div class="favoritter produktContainer"></div>
-      </section>
-    </main>
+    <section>
+      <h2>Vores favoritter</h2>
+      <div class="favoritter produktContainer"></div>
+    </section>
+  </main>
 
-    <footer></footer>
-  </body>
+  <footer></footer>
+</body>
+
 </html>

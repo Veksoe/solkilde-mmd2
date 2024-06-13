@@ -1201,6 +1201,8 @@ footer .copyright p {
         width: 19%;
 
     }
-
+.behandlingOgPleje > p {
+    margin: 0 25% 35px ;
+}
 
 }

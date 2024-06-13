@@ -814,7 +814,6 @@ footer .copyright p {
     }
 
     .omSolkilde .imgContainer {
-        /* max-height: 700px; */
         width: 40%;
     }
 
@@ -840,7 +839,6 @@ footer .copyright p {
     }
 
     section {
-        /* height: 90vh; */
         margin-bottom: var(--largeSpacing);
     }
 

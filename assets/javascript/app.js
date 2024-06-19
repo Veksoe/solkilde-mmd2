@@ -1,21 +1,11 @@
 const baseUrl = "https://solkilde-api.annikavekso.com/wp-json/wp/v2/posts";
 
 const produktListeContainerEl = document.querySelector(".produktContainer");
-const produktListeFavContainerEl = document.querySelector(
-    ".produktContainer.favoritter"
-);
-const produktListeMoblerContainerEl = document.querySelector(
-    ".produktContainer.mobler"
-);
-const produktListeBoligdekorationContainerEl = document.querySelector(
-    ".produktContainer.boligdekoration"
-);
-const produktSideMobilContainerEL = document.querySelector(
-    ".produktsideContainerMobil"
-);
-const produktRelateredeContainerEl = document.querySelector(
-    ".produktContainer.relateredeProdukter"
-);
+const produktListeFavContainerEl = document.querySelector(".produktContainer.favoritter");
+const produktListeMoblerContainerEl = document.querySelector(".produktContainer.mobler");
+const produktListeBoligdekorationContainerEl = document.querySelector(".produktContainer.boligdekoration");
+const produktSideMobilContainerEL = document.querySelector(".produktsideContainerMobil");
+const produktRelateredeContainerEl = document.querySelector(".produktContainer.relateredeProdukter");
 
 const closeMenuBtnEl = document.querySelector("nav .mobilMenu button");
 const closeFilterBtnEl = document.querySelector(".filterBox button");
@@ -25,9 +15,7 @@ const filterBoxEl = document.querySelector(".filterBox");
 
 const inputEl = document.querySelectorAll(".input");
 const filterMobelBtnEl = document.querySelector("#mobler");
-const filterDekorationBtnEl = document.querySelector(
-    "#dekorationer"
-);
+const filterDekorationBtnEl = document.querySelector("#dekorationer");
 const seFlereMoblerBtn = document.querySelector(".produkter.mobler button");
 const seFlereBoligdekorationBtn = document.querySelector(".produkter.boligdekoration button");
 const filterContainernEl = document.querySelector(".filterContainer");
@@ -46,7 +34,7 @@ let hentetProdukter = [];
 KALD AF FUNKTIONERNE
 *************************************/
 if (produktListeFavContainerEl) {
-    hentProdukterFraTaxonomy("34,37", "", "", "35", "", "", "", "", 4, produktListeFavContainerEl);
+    hentProdukter(produktListeFavContainerEl, "34,37", 4, 0, "35", "", "", "", "", "", "");
 }
 if (produktListeMoblerContainerEl) {
     hentProdukter(produktListeMoblerContainerEl, "34", 9, hentetProdukter.length);
@@ -60,7 +48,6 @@ if (produktSideMobilContainerEL) {
 if (produktRelateredeContainerEl) {
     hentProdukter(produktRelateredeContainerEl, "34,37", 4, hentetProdukter.length);
 }
-
 if (footerEl) {
     renderFooter();
 }
@@ -92,13 +79,14 @@ if (filterDekorationBtnEl) {
 }
 
 if (seFlereMoblerBtn) {
-    seFlereMoblerBtn.addEventListener("click", (event) => {
-        hentProdukter(produktListeMoblerContainerEl, "34", 9, hentetProdukter.length);
+    seFlereMoblerBtn.addEventListener("click", () => {
+        filterMobelProdukter(produktListeMoblerContainerEl);
     });
 }
 if (seFlereBoligdekorationBtn) {
     seFlereBoligdekorationBtn.addEventListener("click", (event) => {
-        hentProdukter(produktListeBoligdekorationContainerEl, "37", 9, hentetProdukter.length);
+        filterDekorationsProdukter(produktListeBoligdekorationContainerEl);
+        ;
     });
 }
 
@@ -116,16 +104,23 @@ for (let index = 0; index < inputEl.length; index++) {
 }
 if (toggleEls && filterMobelBtnEl) {
     toggleEls.forEach((toggle) => {
-        console.log("help")
-        toggle.addEventListener("change", () =>
-            filterMobelProdukter(produktListeContainerEl)
+        toggle.addEventListener("change", () => {
+            /* Fjern hvad der står i placeringen i øjeblikket */
+            produktListeContainerEl.innerHTML = "";
+            hentetProdukter = [];
+            filterMobelProdukter(produktListeContainerEl);
+        }
         );
     });
 }
 if (toggleEls && filterDekorationBtnEl) {
     toggleEls.forEach((toggle) => {
-        toggle.addEventListener("change", () =>
-            filterDekorationsProdukter(produktListeContainerEl)
+        toggle.addEventListener("change", () => {
+            /* Fjern hvad der står i placeringen i øjeblikket */
+            produktListeContainerEl.innerHTML = "";
+            hentetProdukter = [];
+            filterDekorationsProdukter(produktListeContainerEl);
+        }
         );
     });
 }
@@ -135,45 +130,11 @@ HENT PRODUKTER PÅ FORSKELLIGE MÅDER
 *************************************/
 
 /* Hent alle produkter og tag en placering, en kategori, et antal og et offset ind */
-function hentProdukter(placering, kategori, antal, offset) {
-    fetch(baseUrl + "?categories=" + kategori + "&per_page=" + antal + "&offset=" + offset)
-        .then((res) => res.json())
-        .then((data) => {
-            /* Tjek om længden af det der bliver hentet, er det samme som det antal vi har sat i antal-parameteren */
-            if (data.length !== antal) {
-                /* Hvis det ikke er ens, tjek om der er en seFlere-button på siden, og så sæt display=none på knappen. */
-                if (seFlereMoblerBtn) {
-                    seFlereMoblerBtn.style.display = "none"
-                }
-                if (seFlereBoligdekorationBtn) {
-                    seFlereBoligdekorationBtn.style.display = "none"
-                }
-            }
-            /* Tag arrayet med hentet produkter, og sæt det sammen med det data der bliver hentet. */
-            hentetProdukter = hentetProdukter.concat(data);
-            /* For hvert object i datet, kør funktionen til at rendere preview af en produkt/produkt card. */
-            data.forEach((produkt) => renderPreviewProdukt(produkt, placering));
-        })
-        .catch((err) => console.log("Noget gik galt: " + err));
-}
+function hentProdukter(placering, kategori, antal, offset, favoritter, bredde, dybde, fremstillingsmetode,
+    hojde, pris, produkt_type) {
 
-/* Hent et produkt og tag et id og en placering ind */
-function hentProduktside(produktId, placering) {
-    /* Fetch link med id fra den specefikke produkt vi ønsker at hente.  */
-    fetch(baseUrl + "/" + produktId)
-        .then((res) => res.json())
-        .then((data) => {
-            /* Kald funktionen der renderer en produkt med dataet der bliver fetchet og hvor den skal placeres på siden  */
-            renderFuldProdukt(data, placering);
-        })
-        .catch((err) => console.log("Noget gik galt: " + err));
-}
-
-/* Hent produkter og fra bestemt taxonomi og taxonomierne, et antal der skal vises og en placering  */
-function hentProdukterFraTaxonomy(kategori, bredde, dybde, favoritter, fremstillingsmetode,
-    hojde, pris, produkt_type, antal, placering) {
     /* Variable til at holde url'et til filtreringen af produkter */
-    let filteretUrl = baseUrl + "?categories=" + kategori + "&per_page=" + antal;
+    let filteretUrl = baseUrl + "?categories=" + kategori + "&per_page=" + antal + "&offset=" + offset;
     /* Variable til at holde det vi vil filtere ud fra */
     let query = "";
 
@@ -204,22 +165,55 @@ function hentProdukterFraTaxonomy(kategori, bredde, dybde, favoritter, fremstill
         query += "&produkt_type=" + produkt_type;
     }
 
-    /* Hent datet fra linket der kommer når vi ligger vores query variable sammen med vores filteretUrl */
     fetch(filteretUrl + query)
         .then((res) => res.json())
         .then((data) => {
-            if (data.length === 0) {
-                /* Hvis der ikke er noget data  sæt teksten ind i placeringen sat i functions kaldet */
-                placering.innerHTML += `<p>Der er desværre ingen prdukter der matcher dit valg</p>`;
+            hentetProdukter = hentetProdukter.concat(data);
+
+            /* Tjek om længden af det der bliver hentet, er det samme som det antal vi har sat i antal-parameteren */
+            if (data.length !== antal) {
+                /* Hvis det ikke er ens, tjek om der er en seFlere-button på siden, og så sæt display=none på knappen. */
+                if (seFlereMoblerBtn) {
+                    seFlereMoblerBtn.style.display = "none"
+                }
+                if (seFlereBoligdekorationBtn) {
+                    seFlereBoligdekorationBtn.style.display = "none"
+                }
             } else {
+                if (seFlereMoblerBtn) {
+                    seFlereMoblerBtn.style.display = "flex"
+                }
+                if (seFlereBoligdekorationBtn) {
+                    seFlereBoligdekorationBtn.style.display = "flex"
+                }
+            }
+            if (hentetProdukter.length === 0 && data.length === 0) {
+                /* Hvis der ikke er noget data  sæt teksten ind i placeringen sat i functions kaldet */
+                placering.innerHTML += `<p>Der er desværre ingen produkter der matcher dit valg</p>`;
+            } else {
+                /* Tag arrayet med hentet produkter, og sæt det sammen med det data der bliver hentet. */
                 data.forEach((produkt) =>
                     /* Hvis der er noget data kør kør funktionen til at rendere preview af en produkt/produkt card for hver data */
                     renderPreviewProdukt(produkt, placering)
                 );
             }
+
         })
         .catch((err) => console.log("Noget gik galt: " + err));
 }
+
+/* Hent et produkt og tag et id og en placering ind */
+function hentProduktside(produktId, placering) {
+    /* Fetch link med id fra den specefikke produkt vi ønsker at hente.  */
+    fetch(baseUrl + "/" + produktId)
+        .then((res) => res.json())
+        .then((data) => {
+            /* Kald funktionen der renderer en produkt med dataet der bliver fetchet og hvor den skal placeres på siden  */
+            renderFuldProdukt(data, placering);
+        })
+        .catch((err) => console.log("Noget gik galt: " + err));
+}
+
 
 /************************************
 FILTERING AF PRODUKTER
@@ -227,8 +221,6 @@ FILTERING AF PRODUKTER
 
 /* Filtrer produkt i møbler og tag en placering */
 function filterMobelProdukter(placering) {
-    /* Fjern hvad der står i placeringen i øjeblikket */
-    placering.innerHTML = "";
     /* Variablen med tomt array til at holde taxonomier i den aktuelle kategori */
     let tilladtBredder = [];
     let tilladtDybder = [];
@@ -342,14 +334,13 @@ function filterMobelProdukter(placering) {
     /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de 
     valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og 
     hvor det skal vises. */
-    hentProdukterFraTaxonomy("34", tilladtBredder, tilladtDybder, "", tilladtFremstilling,
-        tilladtHojder, tilladtPriser, tilladtType, 100, placering);
+    hentProdukter(placering, "34", 9, hentetProdukter.length, "", tilladtBredder, tilladtDybder, tilladtFremstilling,
+        tilladtHojder, tilladtPriser, tilladtType);
 }
 /* Filtrer produkt i dekorationer og tag en placering */
 function filterDekorationsProdukter(placering) {
-    placering.innerHTML = ""; /* Fjern hvad der står i placeringen i øjeblikket */
-    let tilladtBredder =
-        []; /* Variablen med tomt array til at holde taxonomier i den aktuelle kategori */
+
+    let tilladtBredder = []; /* Variablen med tomt array til at holde taxonomier i den aktuelle kategori */
     let tilladtDybder = [];
     let tilladtHojder = [];
     let tilladtPriser = [];
@@ -450,7 +441,8 @@ function filterDekorationsProdukter(placering) {
     }
 
     /* Kør funktionen der henter produkter ud fra taxonomier, og indsæt variablerne med de valgte/tilladte felter der er blevet checked, sammen med antallet der skal vises og hvor det skal vises. */
-    hentProdukterFraTaxonomy("37", tilladtBredder, tilladtDybder, "", tilladtFremstilling, tilladtHojder, tilladtPriser, tilladtType, 100, placering);
+    hentProdukter(placering, "37", 9, hentetProdukter.length, "", tilladtBredder, tilladtDybder, tilladtFremstilling,
+        tilladtHojder, tilladtPriser, tilladtType);
 }
 
 /************************************

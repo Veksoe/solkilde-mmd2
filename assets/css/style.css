@@ -693,7 +693,7 @@ footer .copyright p {
     align-items: flex-end;
     flex-direction: column;
     position: relative;
-    margin: 0 var(--mediumSpacing);
+    /* margin: 0 var(--mediumSpacing); */
 }
 
 .filterMobilContainer .filterBox {
@@ -750,6 +750,11 @@ footer .copyright p {
 
 .hidden {
     display: none;
+}
+
+.rotate {
+    transform: rotate(180deg);
+    transition: .3s;
 }
 
 /* --- MEDIA QUERY--- */
@@ -1072,6 +1077,7 @@ footer .copyright p {
     .filterDesktopContainer {
         display: flex;
         grid-column: 2/5;
+        height: fit-content;
     }
 
     .filterDesktopContainer .filterBox {
@@ -1080,7 +1086,11 @@ footer .copyright p {
         border: 2px solid var(--interactableColor);
         border-radius: var(--borderRadius);
         width: 100%;
-        max-height: 1250px;
+
+    }
+
+    .filterDesktopContainer .filterGroup {
+        border-bottom: 3px solid var(--accentColor);
     }
 
     .filterDesktopContainer h3 {
@@ -1127,7 +1137,7 @@ footer .copyright p {
     .allFaq .faqBox {
         width: fit-content;
         margin: 0;
-       
+
 
     }
 
@@ -1201,8 +1211,9 @@ footer .copyright p {
         width: 19%;
 
     }
-.behandlingOgPleje > p {
-    margin: 0 25% 35px ;
-}
+
+    .behandlingOgPleje>p {
+        margin: 0 25% 35px;
+    }
 
 }

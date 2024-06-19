@@ -12,6 +12,8 @@ const closeFilterBtnEl = document.querySelector(".filterBox button");
 const openMenuBtnEl = document.querySelector("nav .menu ");
 const mobilMenuEl = document.querySelector("nav .mobilMenu");
 const filterBoxEl = document.querySelector(".filterBox");
+const filterAccordianEls = document.querySelectorAll(".filterGroup .accordian")
+const filterOptionsEl = document.querySelectorAll(".filterGroup .options")
 
 const inputEl = document.querySelectorAll(".input");
 const filterMobelBtnEl = document.querySelector("#mobler");
@@ -123,6 +125,19 @@ if (toggleEls && filterDekorationBtnEl) {
         }
         );
     });
+}
+if (filterAccordianEls) {
+    for (let index = 0; index < filterAccordianEls.length; index++) {
+
+        filterAccordianEls[index].addEventListener("click", (event) => {
+            const currentOptions = filterOptionsEl[index];
+            const accordianIconEls = document.querySelectorAll(".accordian i")
+            accordianIconEls[index].classList.toggle("rotate")
+            currentOptions.classList.toggle("hidden")
+        })
+    }
+
+
 }
 
 /************************************

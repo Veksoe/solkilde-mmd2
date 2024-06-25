@@ -130,14 +130,11 @@ if (filterAccordianEls) {
     for (let index = 0; index < filterAccordianEls.length; index++) {
 
         filterAccordianEls[index].addEventListener("click", (event) => {
-            const currentOptions = filterOptionsEl[index];
             const accordianIconEls = document.querySelectorAll(".accordian i")
             accordianIconEls[index].classList.toggle("rotate")
-            currentOptions.classList.toggle("hidden")
+            filterOptionsEl[index].classList.toggle("hidden")
         })
     }
-
-
 }
 
 /************************************
